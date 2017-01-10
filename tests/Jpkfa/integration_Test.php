@@ -17,7 +17,10 @@ class integration_Test extends PHPUnit_Framework_TestCase
         $jpkfa->dodaj_fakture($faktura1);
 
         $raport = $jpkfa->generuj($raport_path);
+
+        $this->assertFileExists($raport_path);
         $walidator = new \Jpk\Walidator($raport_path);
+
         $this->assertTrue($walidator->sprawdz_poprawnosc());
     }
 }
