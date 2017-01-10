@@ -7,10 +7,16 @@ class Jpkfa
     public function __construct($podmiot, $data_od, $data_do)
     {
         $this->podmiot = $podmiot;
+        $this->set_generator();
     }
 
-    public function set_generator($generator)
+    public function set_generator($generator = null)
     {
+        if (!$generator)
+        {
+            $generator = new \Jpk\Generator_smarty;
+        }
+
         $this->generator = $generator;
     }
 
@@ -20,7 +26,6 @@ class Jpkfa
 
     public function generuj($path)
     {
-        $content = 'raport jpkfa';
-        file_put_contents($path, $content);
+        file_put_contents($path, $this->generator->xml());
     }
 }
