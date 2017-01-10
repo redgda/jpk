@@ -14,6 +14,10 @@ class Jpkfa
         $this->generator = $generator;
     }
 
+    public function dodaj_fakture($faktura)
+    {
+    }
+
     public function generuj($path)
     {
         $content = 'raport jpkfa';

@@ -1,6 +1,6 @@
 <?php
 
-class jpk_Test extends PHPUnit_Framework_TestCase
+class integration_Test extends PHPUnit_Framework_TestCase
 {
     function test_one()
     {
