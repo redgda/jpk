@@ -1,0 +1,8 @@
+{
+    "name": "redgda/jpk",
+    "description": "generator raportow jpk",
+    "type": "library",
+    "require": {
+        "smarty/smarty": "3.1.*"
+    }
+}
