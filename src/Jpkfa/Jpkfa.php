@@ -7,13 +7,13 @@ class Jpkfa
     public function __construct($podmiot1, $data_od, $data_do, $kod_urzedu, $cel_zlozenia=1)
     {
         $this->dane['Podmiot1'] = $podmiot1;
-        $this->dane['data_od'] = $data_od;
-        $this->dane['data_do'] = $data_do;
-        $this->dane['kod_urzedu'] = $kod_urzedu;
+        $this->dane['DataOd'] = $data_od;
+        $this->dane['DataDo'] = $data_do;
+        $this->dane['KodUrzedu'] = $kod_urzedu;
         $this->dane['CelZlozenia'] = $cel_zlozenia;
 
         $this->dane['DomyslnyKodWaluty'] = 'PLN';
-        $this->dane['data_generowania'] = date("Y-m-d\TH:i:s");
+        $this->dane['DataWytworzeniaJPK'] = date("Y-m-d\TH:i:s");
 
         $this->set_generator();
     }

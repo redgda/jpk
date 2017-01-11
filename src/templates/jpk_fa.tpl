@@ -4,11 +4,11 @@
             <KodFormularza kodSystemowy="JPK_FA (1)" wersjaSchemy="1-0">JPK_FA</KodFormularza>
             <WariantFormularza>1</WariantFormularza>
             <CelZlozenia>{$dane.CelZlozenia}</CelZlozenia>
-            <DataWytworzeniaJPK>{$dane.data_generowania}</DataWytworzeniaJPK>
-            <DataOd>{$dane.data_od}</DataOd>
-            <DataDo>{$dane.data_do}</DataDo>
+            <DataWytworzeniaJPK>{$dane.DataWytworzeniaJPK}</DataWytworzeniaJPK>
+            <DataOd>{$dane.DataOd}</DataOd>
+            <DataDo>{$dane.DataDo}</DataDo>
             <DomyslnyKodWaluty>{$dane.DomyslnyKodWaluty}</DomyslnyKodWaluty>
-            <KodUrzedu>{$dane.kod_urzedu}</KodUrzedu>
+            <KodUrzedu>{$dane.KodUrzedu}</KodUrzedu>
       </Naglowek>
       <Podmiot1>
          <IdentyfikatorPodmiotu>
