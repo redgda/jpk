@@ -3,30 +3,30 @@
       <Naglowek>
             <KodFormularza kodSystemowy="JPK_FA (1)" wersjaSchemy="1-0">JPK_FA</KodFormularza>
             <WariantFormularza>1</WariantFormularza>
-            <CelZlozenia>1</CelZlozenia>
-            <DataWytworzeniaJPK>2016-06-14T15:24:51</DataWytworzeniaJPK>
-            <DataOd>2016-07-01</DataOd>
-            <DataDo>2016-07-31</DataDo>
-            <DomyslnyKodWaluty>PLN</DomyslnyKodWaluty>
-            <KodUrzedu>0402</KodUrzedu>
+            <CelZlozenia>{$dane.CelZlozenia}</CelZlozenia>
+            <DataWytworzeniaJPK>{$dane.data_generowania}</DataWytworzeniaJPK>
+            <DataOd>{$dane.data_od}</DataOd>
+            <DataDo>{$dane.data_do}</DataDo>
+            <DomyslnyKodWaluty>{$dane.DomyslnyKodWaluty}</DomyslnyKodWaluty>
+            <KodUrzedu>{$dane.kod_urzedu}</KodUrzedu>
       </Naglowek>
       <Podmiot1>
          <IdentyfikatorPodmiotu>
-            <etd:NIP>1111111111</etd:NIP>
-            <etd:PelnaNazwa>PEŁNA NAZWA FIRMY</etd:PelnaNazwa>
-            <etd:REGON>222222222</etd:REGON>
+            <etd:NIP>{$Podmiot1->Nip}</etd:NIP>
+            <etd:PelnaNazwa>{$Podmiot1->Nazwa}</etd:PelnaNazwa>
+            <etd:REGON>{$Podmiot1->Regon}</etd:REGON>
          </IdentyfikatorPodmiotu>
          <AdresPodmiotu>
-            <etd:KodKraju>PL</etd:KodKraju>
-            <etd:Wojewodztwo>MAZOWIECKIE</etd:Wojewodztwo>
-            <etd:Powiat>WARSZAWA</etd:Powiat>
-            <etd:Gmina>WARSZAWA</etd:Gmina>
-            <etd:Ulica>ŚWIDERSKA</etd:Ulica>
-            <etd:NrDomu>1</etd:NrDomu>
-            <etd:NrLokalu>2</etd:NrLokalu>
-            <etd:Miejscowosc>WARSZAWA</etd:Miejscowosc>
-            <etd:KodPocztowy>01-001</etd:KodPocztowy>
-            <etd:Poczta>WARSZAWA</etd:Poczta>
+            <etd:KodKraju>{$Podmiot1->Kod_kraju}</etd:KodKraju>
+            <etd:Wojewodztwo>{$Podmiot1->Wojewodztwo}</etd:Wojewodztwo>
+            <etd:Powiat>{$Podmiot1->Powiat}</etd:Powiat>
+            <etd:Gmina>{$Podmiot1->Gmina}</etd:Gmina>
+            <etd:Ulica>{$Podmiot1->Ulica}</etd:Ulica>
+            <etd:NrDomu>{$Podmiot1->NrDomu}</etd:NrDomu>
+            {if $Podmiot1->NrLokalu}<etd:NrLokalu>{$Podmiot1->NrLokalu}</etd:NrLokalu>{/if}
+            <etd:Miejscowosc>{$Podmiot1->Miejscowosc}</etd:Miejscowosc>
+            <etd:KodPocztowy>{$Podmiot1->KodPocztowy}</etd:KodPocztowy>
+            <etd:Poczta>{$Podmiot1->Poczta}</etd:Poczta>
          </AdresPodmiotu>
       </Podmiot1>
       <Faktura typ="G">

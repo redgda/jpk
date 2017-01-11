@@ -4,9 +4,17 @@ namespace Jpk;
 
 class Jpkfa
 {
-    public function __construct($podmiot, $data_od, $data_do)
+    public function __construct($podmiot1, $data_od, $data_do, $kod_urzedu, $cel_zlozenia=1)
     {
-        $this->podmiot = $podmiot;
+        $this->dane['Podmiot1'] = $podmiot1;
+        $this->dane['data_od'] = $data_od;
+        $this->dane['data_do'] = $data_do;
+        $this->dane['kod_urzedu'] = $kod_urzedu;
+        $this->dane['CelZlozenia'] = $cel_zlozenia;
+
+        $this->dane['DomyslnyKodWaluty'] = 'PLN';
+        $this->dane['data_generowania'] = date("Y-m-d\TH:i:s");
+
         $this->set_generator();
     }
 
@@ -26,6 +34,6 @@ class Jpkfa
 
     public function generuj($path)
     {
-        file_put_contents($path, $this->generator->xml());
+        file_put_contents($path, $this->generator->xml($this->dane));
     }
 }

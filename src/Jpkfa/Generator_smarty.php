@@ -10,8 +10,11 @@ class Generator_smarty
         $this->tpl->setTemplateDir(__DIR__ . '/../templates/');
     }
 
-    public function xml()
+    public function xml($dane)
     {
+        $this->tpl->assign('dane', $dane);
+        $this->tpl->assign('Podmiot1', $dane['Podmiot1']); // wygodny alias
+
         return $this->tpl->fetch('jpk_fa.tpl');
     }
 }
