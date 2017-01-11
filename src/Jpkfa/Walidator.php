@@ -11,7 +11,7 @@ class Walidator
 
     public function sprawdz_poprawnosc()
     {
-        return $this->sprawdz_zgodnosc_struktury(__DIR__ .'/../../tests/fixtures/schemat_jpk_fa.xsd');
+        return $this->sprawdz_zgodnosc_struktury(__DIR__ .'/../../spec/schemat_jpk_fa.xsd');
     }
 
     private function sprawdz_zgodnosc_struktury($schema)
