@@ -10,15 +10,15 @@ class integration_Test extends PHPUnit_Framework_TestCase
         $podmiot->Nazwa = 'Trojmiasto.pl Sp. z o.o.';
         $podmiot->Nip = 5833012490;
         $podmiot->Regon = 220563678;
-        $podmiot->Ulica = 'Waly Piastowskie'; // @todo polskie znaki?!
+        $podmiot->Ulica = 'Wały Piastowskie';
         $podmiot->NrDomu = '1';
         $podmiot->KodPocztowy = '80-855';
         $podmiot->Kod_kraju = 'PL';
         $podmiot->Wojewodztwo = 'POMORSKIE';
-        $podmiot->Powiat = 'Gdansk'; // @todo cos z kodowaniem UTF?
-        $podmiot->Miejscowosc = 'Gdansk';
-        $podmiot->Gmina = 'Gdansk';
-        $podmiot->Poczta = 'Gdansk';
+        $podmiot->Powiat = 'Gdańsk';
+        $podmiot->Miejscowosc = 'Gdańsk';
+        $podmiot->Gmina = 'Gdańsk';
+        $podmiot->Poczta = 'Gdańsk';
 
         $jpkfa = new \Jpk\Jpkfa($podmiot, "2017-01-01", "2017-01-31", 2206);
 
