@@ -4,7 +4,7 @@ class integration_Test extends PHPUnit_Framework_TestCase
 {
     function test_one()
     {
-        $raport_path = "jpk_fa.xml";
+        $raport_path = "raport.xml";
 
         $sprzedawca = new \Jpk\Podmiot();
         $sprzedawca->Nazwa = 'Trojmiasto.pl Sp. z o.o.';
@@ -53,10 +53,12 @@ class integration_Test extends PHPUnit_Framework_TestCase
         $this->assertFileExists($raport_path);
         $walidator = new \Jpk\Walidator($raport_path);
 
-        $this->assertTrue($walidator->sprawdz_poprawnosc());
+        $this->assertTrue(
+            $walidator->sprawdz_zgodnosc_struktury(__DIR__ .'/../../spec/schemat_jpk_fa.xsd'), 
+            'niezgodny z formalna struktura xsd'
+        );
 
-        echo $raport;
-        echo "\n";
+        $this->assertTrue($walidator->sprawdz_zgodnosc_logiczna(), 'dane niepoprawne logicznie');
     }
 
 }

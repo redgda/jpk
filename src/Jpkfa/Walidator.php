@@ -11,13 +11,19 @@ class Walidator
 
     public function sprawdz_poprawnosc()
     {
-        return $this->sprawdz_zgodnosc_struktury(__DIR__ .'/../../spec/schemat_jpk_fa.xsd');
+        return $this->sprawdz_zgodnosc_struktury();
     }
 
-    private function sprawdz_zgodnosc_struktury($schema)
+    public function sprawdz_zgodnosc_struktury($schema_file)
     {
         $xml = new \DOMDocument();
         $xml->load($this->plik);
-        return $xml->schemaValidate($schema);
+        return $xml->schemaValidate($schema_file);
+    }
+
+    // czy zgadzaja sie sumy kwot i ilosciowe
+    public function sprawdz_zgodnosc_logiczna()
+    {
+        //@todo
     }
 }
