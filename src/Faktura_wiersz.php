@@ -4,8 +4,8 @@ namespace Jpk;
 
 class Faktura_wiersz
 {
-    public function __construct($dane)
-    {
-        $this->dane = $dane;
-    }
+    public $nazwa;
+    public $cenaJednostkowNetto;
+    public $miara = 'szt';
+    public $ilosc = 1;
 }

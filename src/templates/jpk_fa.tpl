@@ -29,29 +29,33 @@
             <etd:Poczta>{$Podmiot1->Poczta}</etd:Poczta>
          </AdresPodmiotu>
       </Podmiot1>
-      <Faktura typ="G">
-            <P_1>2016-07-01</P_1>
-            <P_2A>1</P_2A>
-            <P_3A>TEST NABYWCA SP. Z O.O.</P_3A>
-            <P_3B>01-001 WARSZAWA, PLAC BANKOWY 1</P_3B>
-            <P_3C>TEST SPRZEDAWCA S.C.</P_3C>
-            <P_3D>03-133 WARSZAWA, PROSTA 1</P_3D>
-            <P_4B>1111111111</P_4B>
-            <P_6>2016-05-24</P_6>
-            <P_13_1>1.00</P_13_1>
-            <P_14_1>0.23</P_14_1>
-            <P_15>1.23</P_15>
-            <P_16>false</P_16>
-            <P_17>false</P_17>
-            <P_18>false</P_18>
-            <P_19>false</P_19>
-            <P_20>false</P_20>
-            <P_21>false</P_21>
-            <P_23>false</P_23>
-            <P_106E_2>false</P_106E_2>
-            <P_106E_3>false</P_106E_3>
-            <RodzajFaktury>POZ</RodzajFaktury>
+
+      {foreach from=$faktury item=faktura}
+      <Faktura typ="{$faktura.Typ}">
+            <P_1>{$faktura.P_1}</P_1>
+            <P_2A>{$faktura.P_2A}</P_2A>
+            <P_3A>{$faktura.P_3A}</P_3A>
+            <P_3B>{$faktura.P_3B}</P_3B>
+            <P_3C>{$faktura.P_3C}</P_3C>
+            <P_3D>{$faktura.P_3D}</P_3D>
+            <P_4B>{$faktura.P_4B}</P_4B>
+            <P_6>{$faktura.P_6}</P_6>
+            <P_13_1>{$faktura.P_13_1}</P_13_1>
+            <P_14_1>{$faktura.P_14_1}</P_14_1>
+            <P_15>{$faktura.P_15}</P_15>
+            <P_16>{$faktura.P_16}</P_16>
+            <P_17>{$faktura.P_17}</P_17>
+            <P_18>{$faktura.P_18}</P_18>
+            <P_19>{$faktura.P_19}</P_19>
+            <P_20>{$faktura.P_20}</P_20>
+            <P_21>{$faktura.P_21}</P_21>
+            <P_23>{$faktura.P_23}</P_23>
+            <P_106E_2>{$faktura.P_106E_2}</P_106E_2>
+            <P_106E_3>{$faktura.P_106E_3}</P_106E_3>
+            <RodzajFaktury>{$faktura.RodzajFaktury}</RodzajFaktury>
       </Faktura>
+      {/foreach}
+
       <FakturaCtrl>
             <LiczbaFaktur>1</LiczbaFaktur>
             <WartoscFaktur>1.23</WartoscFaktur>

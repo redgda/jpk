@@ -13,6 +13,7 @@ class Generator_smarty
     public function xml($dane)
     {
         $this->tpl->assign('dane', $dane);
+        $this->tpl->assign('faktury', $dane['faktury']);
         $this->tpl->assign('Podmiot1', $dane['Podmiot1']); // wygodny alias
 
         return $this->tpl->fetch('jpk_fa.tpl');
