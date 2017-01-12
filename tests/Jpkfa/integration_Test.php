@@ -6,33 +6,46 @@ class integration_Test extends PHPUnit_Framework_TestCase
     {
         $raport_path = "jpk_fa.xml";
 
-        $podmiot = new \Jpk\Podmiot();
-        $podmiot->Nazwa = 'Trojmiasto.pl Sp. z o.o.';
-        $podmiot->Nip = 5833012490;
-        $podmiot->Regon = 220563678;
-        $podmiot->Ulica = 'Wały Piastowskie';
-        $podmiot->NrDomu = '1';
-        $podmiot->KodPocztowy = '80-855';
-        $podmiot->Kod_kraju = 'PL';
-        $podmiot->Wojewodztwo = 'POMORSKIE';
-        $podmiot->Powiat = 'Gdańsk';
-        $podmiot->Miejscowosc = 'Gdańsk';
-        $podmiot->Gmina = 'Gdańsk';
-        $podmiot->Poczta = 'Gdańsk';
+        $sprzedawca = new \Jpk\Podmiot();
+        $sprzedawca->Nazwa = 'Trojmiasto.pl Sp. z o.o.';
+        $sprzedawca->Nip = 5833012490;
+        $sprzedawca->Regon = 220563678;
+        $sprzedawca->Ulica = 'Wały Piastowskie';
+        $sprzedawca->NrDomu = '1';
+        $sprzedawca->KodPocztowy = '80-855';
+        $sprzedawca->Kod_kraju = 'PL';
+        $sprzedawca->Wojewodztwo = 'POMORSKIE';
+        $sprzedawca->Powiat = 'Gdańsk';
+        $sprzedawca->Miejscowosc = 'Gdańsk';
+        $sprzedawca->Gmina = 'Gdańsk';
+        $sprzedawca->Poczta = 'Gdańsk';
 
-        $jpkfa = new \Jpk\Jpkfa($podmiot, "2017-01-01", "2017-01-31", 2206);
+        $jpkfa = new \Jpk\Jpkfa($sprzedawca, "2017-01-01", "2017-01-31", 2206);
 
-        $klient1 = new \Jpk\Podmiot();
-        $klient1->nazwa = 'Nazwa Klienta 1';
-        $klient1->adres = 'Testowa 18/5';
-        $klient1->kod = '12-345';
-        $klient1->miasto = 'Gdynia';
+        $nabywca = new \Jpk\Podmiot();
+        $nabywca->Nazwa = 'Nazwa Klienta 1';
+        $nabywca->Ulica = 'Testowa';
+        $nabywca->NrDomu = '3';
+        $nabywca->KodPocztowy = '12-345';
+        $nabywca->Miejscowosc = 'Gdynia';
+        $nabywca->Nip = '1234567890';
 
-        $faktura1 = new \Jpk\Faktura($podmiot, $klient1);
-        $wiersz1 = new \Jpk\Faktura_wiersz("usluga przyklad");
-        $wiersz2 = new \Jpk\Faktura_wiersz("produkt przyklad");
+        $faktura1 = new \Jpk\Faktura($sprzedawca, $nabywca);
+        $faktura1->DataWystawienia = '2017-01-01';
+        $faktura1->Numer = '123/01/2017 FVS';
+        $faktura1->WartoscBrutto = 369;
+
+        $wiersz1 = new \Jpk\Faktura_wiersz();
+        $wiersz1->nazwa = 'towar1';
+        $wiersz1->cenaJednostkowNetto = 100;
         $faktura1->dodaj_wiersz($wiersz1);
+
+        $wiersz2 = new \Jpk\Faktura_wiersz();
+        $wiersz2->nazwa = 'towar 2';
+        $wiersz2->cenaJednostkowNetto = 200;
+        $wiersz2->ilosc = 3;
         $faktura1->dodaj_wiersz($wiersz2);
+
         $jpkfa->dodaj_fakture($faktura1);
 
         $raport = $jpkfa->generuj($raport_path);
