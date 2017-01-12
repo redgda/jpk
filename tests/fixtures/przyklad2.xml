@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JPK 
+xmlns="http://jpk.mf.gov.pl/wzor/2016/03/09/03095/" 
+xmlns:etd="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2016/01/25/eD/DefinicjeTypy/">
+
+<Naglowek>
+	<KodFormularza kodSystemowy="JPK_FA (1)" wersjaSchemy="1-0">JPK_FA</KodFormularza>
+	<WariantFormularza>1</WariantFormularza>
+	<CelZlozenia>1</CelZlozenia>
+	<DataWytworzeniaJPK>2016-06-08T10:22:00</DataWytworzeniaJPK>
+	<DataOd>2016-03-01</DataOd>
+	<DataDo>2016-03-31</DataDo>
+	<DomyslnyKodWaluty>PLN</DomyslnyKodWaluty>
+	<KodUrzedu>2416</KodUrzedu>
+</Naglowek>
+
+
+<Podmiot1>
+
+<IdentyfikatorPodmiotu>
+        <etd:NIP>1231231212</etd:NIP>
+        <etd:PelnaNazwa>Nazwa Firmy</etd:PelnaNazwa>
+        <etd:REGON>123456789</etd:REGON>
+</IdentyfikatorPodmiotu>
+
+<AdresPodmiotu>
+        <etd:KodKraju>PL</etd:KodKraju>
+        <etd:Wojewodztwo>mazowieckie</etd:Wojewodztwo>
+        <etd:Powiat>warszawski</etd:Powiat>
+        <etd:Gmina>Warszawa</etd:Gmina>
+        <etd:Ulica>Kopernika</etd:Ulica>
+        <etd:NrDomu>10</etd:NrDomu>
+
+        <etd:Miejscowosc>Warszawa</etd:Miejscowosc>
+        <etd:KodPocztowy>01-100</etd:KodPocztowy>
+        <etd:Poczta>Warszawa</etd:Poczta>
+</AdresPodmiotu>
+
+</Podmiot1>
+
+
+<Faktura typ="G">
+	<P_1>2016-03-01</P_1>
+	<P_2A>AB0021/172/16</P_2A>
+	<P_3A>JAN KOWALSKI</P_3A>
+	<P_3B>KATOWICE 20-192, OWOCOWA 6</P_3B>
+	<P_3C>Nazwa Firmy Sprzedawcy</P_3C>
+	<P_3D>Warszawa 02-200, ul. Kosmiczna 4</P_3D>
+	<P_4A>PL</P_4A>
+	<P_4B>1231231212</P_4B>
+	
+	<P_6>2016-03-01</P_6>
+	<P_13_7>285.25</P_13_7>
+	<P_15>285.25</P_15>
+	
+	<P_16>false</P_16>
+	<P_17>false</P_17>
+	<P_18>false</P_18>
+	<P_19>true</P_19>
+	<P_19A>ART. 43 UST. 1 PKT 36 USTAWY</P_19A>
+	<P_20>false</P_20>
+	<P_21>false</P_21>
+	<P_23>false</P_23>
+	<P_106E_2>false</P_106E_2>
+		
+	<RodzajFaktury>VAT</RodzajFaktury>
+</Faktura>
+
+<Faktura typ="G">
+	<P_1>2016-03-31</P_1>
+	<P_2A>UU1858/T73/16</P_2A>
+	<P_3A>HURTOWNIA KSIĄŻKI TECHNICZNEJ</P_3A>
+	<P_3B>OLSZTYN 01-102, UL. NISKA 12/72</P_3B>
+
+        <P_3C>Nazwa Firmy Sprzedawcy</P_3C>
+        <P_3D>Warszawa 02-200, ul. Kosmiczna 4</P_3D>
+        <P_4A>PL</P_4A>
+        <P_4B>1231231212</P_4B>
+
+
+	<P_5A>PL</P_5A>
+	<P_5B>9998881122</P_5B>
+	<P_6>2016-01-31</P_6>
+	
+	<P_13_3>-33.33</P_13_3>
+	<P_14_3>-1.67</P_14_3>
+	<P_15>-35.00</P_15>
+	
+	<P_16>true</P_16>
+	<P_17>false</P_17>
+	<P_18>false</P_18>
+	<P_19>false</P_19>
+	
+	<P_20>false</P_20>
+	<P_21>false</P_21>
+	<P_23>false</P_23>
+	
+	<P_106E_2>false</P_106E_2>
+		
+	<RodzajFaktury>KOREKTA</RodzajFaktury>
+	
+	<PrzyczynaKorekty>UMOWA SPRZEDAŻY KOMISOWEJ Z 7.08.2015 METODA KASOWA ART.19A UST.5 PKT.1</PrzyczynaKorekty>
+	<NrFaKorygowanej>AT90321/073/16</NrFaKorygowanej>
+	<OkresFaKorygowanej>2016-02</OkresFaKorygowanej>
+</Faktura>
+
+
+<FakturaCtrl>
+	<LiczbaFaktur>2</LiczbaFaktur>
+	<WartoscFaktur>250.25</WartoscFaktur>
+</FakturaCtrl>
+
+<StawkiPodatku>
+	<Stawka1>0.23</Stawka1>
+	<Stawka2>0.08</Stawka2>
+	<Stawka3>0.05</Stawka3>
+	<Stawka4>0.00</Stawka4>
+	<Stawka5>0.00</Stawka5>
+</StawkiPodatku>																												
+			
+<FakturaWiersz typ="G">
+	<P_2B>AB0021/990/16</P_2B>
+	<P_7>Czynsz mieszkaniowy-po rozl.opłaty czynszowej</P_7>
+	<P_8A>m-c</P_8A>
+	<P_8B>1.000000</P_8B>
+	
+	<P_9A>285.25</P_9A>
+	<P_11>285.25</P_11>
+	
+	<P_12>zw</P_12>
+</FakturaWiersz>
+
+<FakturaWiersz typ="G">
+	<P_2B>730174/990/16</P_2B>
+	<P_7>MIEJSCE PARKINGOWE</P_7>
+	<P_8A>m-c</P_8A>
+	<P_8B>1.000000</P_8B>
+	
+	<P_9A>50.00</P_9A>
+	<P_11>50.00</P_11>
+	
+	<P_12>23</P_12>
+</FakturaWiersz>
+
+<FakturaWierszCtrl>
+	<LiczbaWierszyFaktur>2</LiczbaWierszyFaktur>
+	<WartoscWierszyFaktur>335.25</WartoscWierszyFaktur>
+</FakturaWierszCtrl>
+
+
+</JPK>
