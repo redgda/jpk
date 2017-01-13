@@ -30,7 +30,7 @@
          </AdresPodmiotu>
       </Podmiot1>
 
-      {foreach from=$faktury item=faktura}
+      {foreach from=$Faktury item=faktura}
       <Faktura typ="{$faktura.Typ}">
             <P_1>{$faktura.P_1}</P_1>
             <P_2A>{$faktura.P_2A}</P_2A>
@@ -57,9 +57,10 @@
       {/foreach}
 
       <FakturaCtrl>
-            <LiczbaFaktur>1</LiczbaFaktur>
-            <WartoscFaktur>1.23</WartoscFaktur>
+            <LiczbaFaktur>{$FakturaCtrl.LiczbaFaktur}</LiczbaFaktur>
+            <WartoscFaktur>{$FakturaCtrl.WartoscFaktur}</WartoscFaktur>
       </FakturaCtrl>
+
       <StawkiPodatku>
             <Stawka1>0.23</Stawka1>
             <Stawka2>0.08</Stawka2>
