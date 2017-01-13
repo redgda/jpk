@@ -50,15 +50,17 @@ class integration_Test extends PHPUnit_Framework_TestCase
 
         $raport = $jpkfa->generuj($raport_path);
 
+        // asercje:
         $this->assertFileExists($raport_path);
-        $walidator = new \Jpk\Walidator($raport_path);
 
+        $walidator = new \Jpk\Walidator($raport_path);
         $this->assertTrue(
             $walidator->sprawdz_zgodnosc_struktury(__DIR__ .'/../../spec/schemat_jpk_fa.xsd'), 
             'niezgodny z formalna struktura xsd'
         );
 
-        $this->assertTrue($walidator->sprawdz_zgodnosc_logiczna(), 'dane niepoprawne logicznie');
+        $this->assertTrue($walidator->sprawdz_liczbe_faktur(), 'liczba faktur niepoprawna');
+        $this->assertTrue($walidator->sprawdz_wartosc_faktur(), 'wartosc faktur niepoprawna');
     }
 
 }
