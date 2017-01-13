@@ -26,4 +26,18 @@ class Jpk_Test extends PHPUnit_Framework_TestCase
         return $sprzedawca;
     }
 
+    public function stworz_fakture()
+    {
+        $sprzedawca = $this->stworz_podmiot();
+        $nabywca = $this->stworz_podmiot([
+            'Nazwa'=>'Klient 1',
+            'Nip'=>'1234567890',
+            'Ulica' => 'Testowa',
+            'NrDomu' => 3
+        ]);
+        $faktura = new \Jpk\Faktura($sprzedawca, $nabywca);
+
+        return $faktura;
+    }
+
 }

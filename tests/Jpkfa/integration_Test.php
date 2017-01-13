@@ -6,21 +6,14 @@ class integration_Test extends Jpk_Test
     {
         $raport_path = "raport.xml";
 
-        $sprzedawca = $this->stworz_podmiot();
-        $nabywca = $this->stworz_podmiot([
-            'Nazwa' => 'Klient 1',
-            'Ulica' => 'Testowa',
-            'NrDomu' => 3,
-            'Nip' => 1234567890
-        ]);
+        $faktura = $this->stworz_fakture();
+        $faktura->DataWystawienia = '2017-01-01';
+        $faktura->Numer = '123/01/2017 FVS';
 
         $wiersz1 = new \Jpk\Faktura_wiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowNetto = 100;
 
-        $faktura = new \Jpk\Faktura($sprzedawca, $nabywca);
-        $faktura->DataWystawienia = '2017-01-01';
-        $faktura->Numer = '123/01/2017 FVS';
         $faktura->dodaj_wiersz($wiersz1);
 
         $wiersz2 = new \Jpk\Faktura_wiersz();
@@ -29,7 +22,7 @@ class integration_Test extends Jpk_Test
         $wiersz2->ilosc = 3;
         $faktura->dodaj_wiersz($wiersz2);
 
-        $jpkfa = new \Jpk\Jpkfa($sprzedawca, "2017-01-01", "2017-01-31", 2206);
+        $jpkfa = new \Jpk\Jpkfa($faktura->sprzedawca, "2017-01-01", "2017-01-31", 2206);
         $jpkfa->dodaj_fakture($faktura);
         $jpkfa->generuj($raport_path);
 

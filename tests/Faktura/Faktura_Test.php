@@ -4,13 +4,9 @@ class Faktura_Test extends Jpk_Test
 {
     function test_suma_netto()
     {
-        $sprzedawca = $this->stworz_podmiot();
-        $nabywca = $this->stworz_podmiot();
+        $faktura = $this->stworz_fakture();
 
-        $faktura = new \Jpk\Faktura($sprzedawca, $nabywca);
-
-        $wiersz1 = new \Jpk\Faktura_wiersz();
-        $wiersz1->nazwa = 'towar1';
+        $wiersz1 = new \Jpk\Faktura_wiersz(); $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowNetto = '100';
         $faktura->dodaj_wiersz($wiersz1);
 
@@ -30,5 +26,20 @@ class Faktura_Test extends Jpk_Test
     function test_suma_brutto($faktura)
     {
         $this->assertEquals('207.13', $faktura->suma('brutto'));
+    }
+
+    function test_suma_stawka0()
+    {
+        $faktura = $this->stworz_fakture();
+
+        $wiersz1 = new \Jpk\Faktura_wiersz();
+        $wiersz1->nazwa = 'towar1';
+        $wiersz1->cenaJednostkowNetto = '100';
+        $wiersz1->stawkaVat = 0;
+        $faktura->dodaj_wiersz($wiersz1);
+
+        $this->assertEquals(0, $faktura->suma('podatek'));
+        $this->assertEquals(100, $faktura->suma('brutto'));
+        $this->assertEquals(100, $faktura->suma('netto'));
     }
 }
