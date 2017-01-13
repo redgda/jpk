@@ -1,66 +1,70 @@
 <?php
 
-class integration_Test extends PHPUnit_Framework_TestCase
+class integration_Test extends Jpk_Test
 {
-    function test_one()
+    function test_generuj()
     {
         $raport_path = "raport.xml";
 
-        $sprzedawca = new \Jpk\Podmiot();
-        $sprzedawca->Nazwa = 'Trojmiasto.pl Sp. z o.o.';
-        $sprzedawca->Nip = 5833012490;
-        $sprzedawca->Regon = 220563678;
-        $sprzedawca->Ulica = 'Wały Piastowskie';
-        $sprzedawca->NrDomu = '1';
-        $sprzedawca->KodPocztowy = '80-855';
-        $sprzedawca->Kod_kraju = 'PL';
-        $sprzedawca->Wojewodztwo = 'POMORSKIE';
-        $sprzedawca->Powiat = 'Gdańsk';
-        $sprzedawca->Miejscowosc = 'Gdańsk';
-        $sprzedawca->Gmina = 'Gdańsk';
-        $sprzedawca->Poczta = 'Gdańsk';
-
-        $jpkfa = new \Jpk\Jpkfa($sprzedawca, "2017-01-01", "2017-01-31", 2206);
-
-        $nabywca = new \Jpk\Podmiot();
-        $nabywca->Nazwa = 'Nazwa Klienta 1';
-        $nabywca->Ulica = 'Testowa';
-        $nabywca->NrDomu = '3';
-        $nabywca->KodPocztowy = '12-345';
-        $nabywca->Miejscowosc = 'Gdynia';
-        $nabywca->Nip = '1234567890';
-
-        $faktura1 = new \Jpk\Faktura($sprzedawca, $nabywca);
-        $faktura1->DataWystawienia = '2017-01-01';
-        $faktura1->Numer = '123/01/2017 FVS';
-        $faktura1->WartoscBrutto = 369;
+        $sprzedawca = $this->stworz_podmiot();
+        $nabywca = $this->stworz_podmiot([
+            'Nazwa' => 'Klient 1',
+            'Ulica' => 'Testowa',
+            'NrDomu' => 3,
+            'Nip' => 1234567890
+        ]);
 
         $wiersz1 = new \Jpk\Faktura_wiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowNetto = 100;
-        $faktura1->dodaj_wiersz($wiersz1);
+
+        $faktura = new \Jpk\Faktura($sprzedawca, $nabywca);
+        $faktura->DataWystawienia = '2017-01-01';
+        $faktura->Numer = '123/01/2017 FVS';
+        $faktura->dodaj_wiersz($wiersz1);
 
         $wiersz2 = new \Jpk\Faktura_wiersz();
         $wiersz2->nazwa = 'towar 2';
         $wiersz2->cenaJednostkowNetto = 200;
         $wiersz2->ilosc = 3;
-        $faktura1->dodaj_wiersz($wiersz2);
+        $faktura->dodaj_wiersz($wiersz2);
 
-        $jpkfa->dodaj_fakture($faktura1);
+        $jpkfa = new \Jpk\Jpkfa($sprzedawca, "2017-01-01", "2017-01-31", 2206);
+        $jpkfa->dodaj_fakture($faktura);
+        $jpkfa->generuj($raport_path);
 
-        $raport = $jpkfa->generuj($raport_path);
-
-        // asercje:
         $this->assertFileExists($raport_path);
 
+        return $raport_path;
+    }
+
+    /**
+     * @depends test_generuj
+     */
+    function test_struktury($raport_path)
+    {
         $walidator = new \Jpk\Walidator($raport_path);
         $this->assertTrue(
             $walidator->sprawdz_zgodnosc_struktury(__DIR__ .'/../../spec/schemat_jpk_fa.xsd'), 
             'niezgodny z formalna struktura xsd'
         );
-
-        $this->assertTrue($walidator->sprawdz_liczbe_faktur(), 'liczba faktur niepoprawna');
-        $this->assertTrue($walidator->sprawdz_wartosc_faktur(), 'wartosc faktur niepoprawna');
     }
 
+    /**
+     * @depends test_generuj
+     */
+    function test_liczba_faktur($raport_path)
+    {
+        $walidator = new \Jpk\Walidator($raport_path);
+        $this->assertTrue($walidator->sprawdz_liczbe_faktur());
+    }
+
+    /**
+     * @depends test_generuj
+     */
+    function test_wartosc_faktur($raport_path)
+    {
+        $walidator = new \Jpk\Walidator($raport_path);
+        $this->assertTrue($walidator->sprawdz_wartosc_faktur());
+    }
 }
