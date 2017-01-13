@@ -20,7 +20,7 @@ class Faktura_Test extends Jpk_Test
         $wiersz2->ilosc = 3;
         $faktura->dodaj_wiersz($wiersz2);
 
-        $this->assertEquals('168,4', $faktura->suma('netto'));
+        $this->assertEquals('168.4', $faktura->suma('netto'));
         return $faktura;
     }
 
@@ -29,6 +29,6 @@ class Faktura_Test extends Jpk_Test
      */
     function test_suma_brutto($faktura)
     {
-        $this->assertEquals('207,13', $faktura->suma('brutto'));
+        $this->assertEquals('207.13', $faktura->suma('brutto'));
     }
 }
