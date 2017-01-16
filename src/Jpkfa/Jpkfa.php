@@ -46,7 +46,7 @@ class Jpkfa
             $faktura_numer = $faktura->numer();
             $this->dane['Wiersze'][] = self::mapuj_wiersz($wiersz, $faktura_numer);
             $this->dane['FakturaWierszCtrl']['LiczbaWierszyFaktur']++;
-            $this->dane['FakturaWierszCtrl']['WartoscWierszyFaktur'] += 123;
+            $this->dane['FakturaWierszCtrl']['WartoscWierszyFaktur'] += $wiersz->sumaBrutto();
         }
     }
 

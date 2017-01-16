@@ -25,24 +25,57 @@ class Walidator
         return $this->dom->schemaValidate($schema_file);
     }
 
-    public function sprawdz_liczbe_faktur()
+    public function liczba_faktur_ctrl()
     {
-        $faktury = $this->dx->query('//p:Faktura');
-        $liczba_faktur_ctrl = $this->dx->query('//p:FakturaCtrl/p:LiczbaFaktur')->item(0)->nodeValue;
-        return $faktury->length == $liczba_faktur_ctrl;
+        return $this->dx->query('//p:FakturaCtrl/p:LiczbaFaktur')->item(0)->nodeValue;
     }
 
-    public function sprawdz_wartosc_faktur()
+    public function liczba_faktur()
     {
-        $faktury = $this->dx->query('//p:Faktura');
-        $wartosc_faktur_ctrl = $this->dx->query('//p:FakturaCtrl/p:WartoscFaktur')->item(0)->nodeValue;
+        return $this->dx->query('//p:Faktura')->length;
+    }
 
+    public function liczba_wierszy_ctrl()
+    {
+        return $this->dx->query('//p:FakturaWierszCtrl/p:LiczbaWierszyFaktur')->item(0)->nodeValue;
+    }
+
+    public function liczba_wierszy()
+    {
+        return $this->dx->query('//p:FakturaWiersz')->length;
+    }
+
+    public function wartosc_faktur_ctrl()
+    {
+        return $this->dx->query('//p:FakturaCtrl/p:WartoscFaktur')->item(0)->nodeValue;
+    }
+
+    public function wartosc_faktur()
+    {
+        $faktury_brutto = $this->dx->query('//p:Faktura/p:P_15');
         $suma_brutto = 0;
-        foreach ($faktury as $faktura)
+        foreach ($faktury_brutto as $brutto)
         {
-            $suma_brutto += $this->dx->query('//p:P_15', $faktura)->item(0)->nodeValue;
+            $suma_brutto += $brutto->nodeValue;
         }
 
-        return $suma_brutto == $wartosc_faktur_ctrl;
+        return $suma_brutto;
+    }
+
+    public function wartosc_wierszy_ctrl()
+    {
+        return $this->dx->query('//p:FakturaWierszCtrl/p:WartoscWierszyFaktur')->item(0)->nodeValue;
+    }
+
+    public function wartosc_wierszy()
+    {
+        $wiersze_brutto = $this->dx->query('//p:FakturaWiersz/p:P_11A');
+        $suma_brutto = 0;
+        foreach ($wiersze_brutto as $brutto)
+        {
+            $suma_brutto += $brutto->nodeValue;
+        }
+
+        return $suma_brutto;
     }
 }

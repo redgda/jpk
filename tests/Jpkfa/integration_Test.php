@@ -13,7 +13,7 @@ class integration_Test extends Jpk_Test
         $wiersz1 = new \Jpk\Faktura_wiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = 100;
-
+        $wiersz1->ilosc = 1;
         $faktura->dodaj_wiersz($wiersz1);
 
         $wiersz2 = new \Jpk\Faktura_wiersz();
@@ -49,7 +49,8 @@ class integration_Test extends Jpk_Test
     function test_liczba_faktur($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertTrue($walidator->sprawdz_liczbe_faktur());
+        $this->assertEquals(1, $walidator->liczba_faktur());
+        $this->assertEquals(1, $walidator->liczba_faktur_ctrl());
     }
 
     /**
@@ -58,6 +59,28 @@ class integration_Test extends Jpk_Test
     function test_wartosc_faktur($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertTrue($walidator->sprawdz_wartosc_faktur());
+        $this->assertEquals(861, $walidator->wartosc_faktur());
+        $this->assertEquals(861, $walidator->wartosc_faktur_ctrl());
     }
+
+    /**
+     * @depends test_generuj
+     */
+    function test_wartosc_wierszy($raport_path)
+    {
+        $walidator = new \Jpk\Walidator($raport_path);
+        $this->assertEquals(861, $walidator->wartosc_wierszy());
+        $this->assertEquals(861, $walidator->wartosc_wierszy_ctrl());
+    }
+
+    /**
+     * @depends test_generuj
+     */
+    function test_ilosc_wierszy($raport_path)
+    {
+        $walidator = new \Jpk\Walidator($raport_path);
+        $this->assertEquals(2, $walidator->liczba_wierszy());
+        $this->assertEquals(2, $walidator->liczba_wierszy_ctrl());
+    }
+
 }
