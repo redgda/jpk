@@ -19,6 +19,9 @@ class Jpkfa
         $this->dane['FakturaCtrl']['LiczbaFaktur'] = 0;
         $this->dane['FakturaCtrl']['WartoscFaktur'] = 0;
 
+        $this->dane['FakturaWierszCtrl']['LiczbaWierszyFaktur'] = 0;
+        $this->dane['FakturaWierszCtrl']['WartoscWierszyFaktur'] = 0;
+
         $this->set_generator();
     }
 
@@ -32,11 +35,19 @@ class Jpkfa
         $this->generator = $generator;
     }
 
-    public function dodaj_fakture($faktura)
+    public function dodaj_fakture(Faktura $faktura)
     {
-        $this->dane['faktury'][] = self::przetworz_dane($faktura);
-        $this->dane['FakturaCtrl']['LiczbaFaktur'] ++;
+        $this->dane['Faktury'][] = self::mapuj_fakture($faktura);
+        $this->dane['FakturaCtrl']['LiczbaFaktur']++;
         $this->dane['FakturaCtrl']['WartoscFaktur'] += $faktura->suma('brutto');
+
+        foreach ($faktura->wiersze as $wiersz)
+        {
+            $faktura_numer = $faktura->numer();
+            $this->dane['Wiersze'][] = self::mapuj_wiersz($wiersz, $faktura_numer);
+            $this->dane['FakturaWierszCtrl']['LiczbaWierszyFaktur']++;
+            $this->dane['FakturaWierszCtrl']['WartoscWierszyFaktur'] += 123;
+        }
     }
 
     public function generuj($path)
@@ -44,7 +55,7 @@ class Jpkfa
         file_put_contents($path, $this->generator->xml($this->dane));
     }
 
-    protected function przetworz_dane($faktura)
+    protected function mapuj_fakture($faktura)
     {
         $dane['Typ'] = 'G'; // jedyna dozwolona wartosc
 
@@ -66,7 +77,7 @@ class Jpkfa
         $dane['P_6'] = $faktura->dataWykonania();
 
         $dane['P_13_1'] = $faktura->suma('netto', 23);
-        $dane['P_14_1'] = $faktura->suma('netto', 23);
+        $dane['P_14_1'] = $faktura->suma('podatek', 23);
         $dane['P_15'] = $faktura->suma('brutto');
 
         $dane['RodzajFaktury'] = $faktura->rodzaj();
@@ -81,6 +92,22 @@ class Jpkfa
         $dane['P_106E_2'] = false;
         $dane['P_106E_3'] = false;
 
+        return $dane;
+    }
+
+    protected function mapuj_wiersz(Faktura_wiersz $wiersz, $numer_faktury)
+    {
+        $dane['Typ'] = 'G'; // jedyna dozwolona wartosc
+
+        $dane['P2_b'] = $numer_faktury;
+        $dane['P_7'] = $wiersz->nazwa();
+        $dane['P_8A'] = $wiersz->miara();
+        $dane['P_8B'] = $wiersz->ilosc();
+        $dane['P_9A'] = $wiersz->cenaJednostkowaNetto();
+        $dane['P_9B'] = $wiersz->cenaJednostkowaBrutto();
+        $dane['P_11'] = $wiersz->sumaNetto();
+        $dane['P_11A'] = $wiersz->sumaBrutto();
+        $dane['P_12'] = $wiersz->stawkaVatOpis();
         return $dane;
     }
 }

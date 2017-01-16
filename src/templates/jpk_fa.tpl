@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <JPK xmlns="http://jpk.mf.gov.pl/wzor/2016/03/09/03095/" xmlns:etd="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2016/01/25/eD/DefinicjeTypy/">
+
       <Naglowek>
             <KodFormularza kodSystemowy="JPK_FA (1)" wersjaSchemy="1-0">JPK_FA</KodFormularza>
             <WariantFormularza>1</WariantFormularza>
@@ -10,6 +11,7 @@
             <DomyslnyKodWaluty>{$dane.DomyslnyKodWaluty}</DomyslnyKodWaluty>
             <KodUrzedu>{$dane.KodUrzedu}</KodUrzedu>
       </Naglowek>
+
       <Podmiot1>
          <IdentyfikatorPodmiotu>
             <etd:NIP>{$Podmiot1->Nip}</etd:NIP>
@@ -68,19 +70,23 @@
             <Stawka4>0.00</Stawka4>
             <Stawka5>0.00</Stawka5>
       </StawkiPodatku>
-      <FakturaWiersz typ="G">
-            <P_2B>1</P_2B>
-            <P_7>TESTOWY PRZEDMIOT SPRZEDAŻY1</P_7>
-            <P_8A>SZT</P_8A>
-            <P_8B>1</P_8B>
-            <P_9A>1.00</P_9A>
-            <P_9B>1.23</P_9B>
-            <P_11>1.00</P_11>
-            <P_11A>1.23</P_11A>
-            <P_12>0</P_12>
+
+      {foreach from=$Wiersze item=wiersz}
+      <FakturaWiersz typ="{$wiersz.Typ}">
+            <P_2B>{$wiersz.P2_b}</P_2B>
+            <P_7>{$wiersz.P_7}</P_7>
+            <P_8A>{$wiersz.P_8A}</P_8A>
+            <P_8B>{$wiersz.P_8B}</P_8B>
+            <P_9A>{$wiersz.P_9A}</P_9A>
+            <P_9B>{$wiersz.P_9B}</P_9B>
+            <P_11>{$wiersz.P_11}</P_11>
+            <P_11A>{$wiersz.P_11A}</P_11A>
+            <P_12>{$wiersz.P_12}</P_12>
       </FakturaWiersz>
+      {/foreach}
+
       <FakturaWierszCtrl>
-            <LiczbaWierszyFaktur>1</LiczbaWierszyFaktur>
-            <WartoscWierszyFaktur>1.23</WartoscWierszyFaktur>
+            <LiczbaWierszyFaktur>{$FakturaWierszCtrl.LiczbaWierszyFaktur}</LiczbaWierszyFaktur>
+            <WartoscWierszyFaktur>{$FakturaWierszCtrl.WartoscWierszyFaktur}</WartoscWierszyFaktur>
       </FakturaWierszCtrl>
 </JPK>

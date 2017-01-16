@@ -12,13 +12,13 @@ class integration_Test extends Jpk_Test
 
         $wiersz1 = new \Jpk\Faktura_wiersz();
         $wiersz1->nazwa = 'towar1';
-        $wiersz1->cenaJednostkowNetto = 100;
+        $wiersz1->cenaJednostkowaNetto = 100;
 
         $faktura->dodaj_wiersz($wiersz1);
 
         $wiersz2 = new \Jpk\Faktura_wiersz();
         $wiersz2->nazwa = 'towar 2';
-        $wiersz2->cenaJednostkowNetto = 200;
+        $wiersz2->cenaJednostkowaNetto = 200;
         $wiersz2->ilosc = 3;
         $faktura->dodaj_wiersz($wiersz2);
 

@@ -9,7 +9,6 @@ class Faktura
     public $Numer;
 
     protected $sumy;
-
     protected $stawki = array(0, 5, 8, 23);
 
     public function __construct($podmiot, $klient)
@@ -35,7 +34,7 @@ class Faktura
 
         foreach ($this->wiersze as $wiersz)
         {
-            $suma_wiersza_netto = $wiersz->cenaJednostkowNetto * $wiersz->ilosc;
+            $suma_wiersza_netto = $wiersz->cenaJednostkowaNetto * $wiersz->ilosc;
             $suma_wiersza_podatek = round($suma_wiersza_netto * $wiersz->stawkaVat/100, 2);
             $suma_wiersza_brutto = $suma_wiersza_netto + $suma_wiersza_podatek;
 
@@ -122,5 +121,10 @@ class Faktura
     public function rodzaj()
     {
         return 'VAT';
+    }
+
+    public function wiersze()
+    {
+        return $this->wiersze;
     }
 }

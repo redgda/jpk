@@ -12,10 +12,14 @@ class Generator_smarty
 
     public function xml($dane)
     {
+        // wszystkie dane:
         $this->tpl->assign('dane', $dane);
-        $this->tpl->assign('Faktury', $dane['faktury']);
-        $this->tpl->assign('Podmiot1', $dane['Podmiot1']); // wygodny alias
+        // wygodne aliasy:
+        $this->tpl->assign('Faktury', $dane['Faktury']);
+        $this->tpl->assign('Podmiot1', $dane['Podmiot1']); 
         $this->tpl->assign('FakturaCtrl', $dane['FakturaCtrl']);
+        $this->tpl->assign('Wiersze', $dane['Wiersze']);
+        $this->tpl->assign('FakturaWierszCtrl', $dane['FakturaWierszCtrl']);
 
         return $this->tpl->fetch('jpk_fa.tpl');
     }
