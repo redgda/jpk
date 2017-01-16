@@ -34,12 +34,12 @@ class Faktura
 
         foreach ($this->wiersze as $wiersz)
         {
-            $suma_wiersza_netto = $wiersz->cenaJednostkowaNetto * $wiersz->ilosc;
-            $suma_wiersza_podatek = round($suma_wiersza_netto * $wiersz->stawkaVat/100, 2);
-            $suma_wiersza_brutto = $suma_wiersza_netto + $suma_wiersza_podatek;
+            $suma_wiersza_netto = $wiersz->sumaNetto();
+            $suma_wiersza_podatek = $wiersz->sumaPodatek();
+            $suma_wiersza_brutto = $wiersz->sumaBrutto();
 
             // @todo problem ze stawkami zw. i 0
-            $indeks = $wiersz->stawkaVat;
+            $indeks = $wiersz->stawkaVat();
 
             $this->sumy['netto'][$indeks] += $suma_wiersza_netto;
             $this->sumy['podatek'][$indeks] += $suma_wiersza_podatek;
@@ -51,7 +51,7 @@ class Faktura
         }
     }
 
-    public function dodaj_wiersz($wiersz)
+    public function dodaj_wiersz(Faktura_Wiersz $wiersz)
     {
         $this->wiersze[] = $wiersz;
         $this->przelicz();

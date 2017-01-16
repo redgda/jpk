@@ -45,7 +45,12 @@ class Faktura_wiersz
 
     public function sumaBrutto()
     {
-        return round($this->sumaNetto() * (1 + $this->stawkaVat/100), 2);
+        return $this->sumaNetto() + $this->sumaPodatek();
+    }
+
+    public function sumaPodatek()
+    {
+        return round(($this->sumaNetto() * $this->stawkaVat/100), 2);
     }
 
     public function stawkaVat()
