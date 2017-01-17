@@ -59,8 +59,9 @@ class integration_Test extends Jpk_Test
     function test_wartosc_faktur($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(861, $walidator->wartosc_faktur());
-        $this->assertEquals(861, $walidator->wartosc_faktur_ctrl());
+        $this->assertEquals(861, $walidator->wartosc_faktur()); // P_15
+        $this->assertEquals(700, $walidator->wartosc_faktur_ctrl()); // 
+        $this->assertEquals(700, $walidator->wartosc_faktur_netto()); // P_15
     }
 
     /**
@@ -69,8 +70,8 @@ class integration_Test extends Jpk_Test
     function test_wartosc_wierszy($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(861, $walidator->wartosc_wierszy());
-        $this->assertEquals(861, $walidator->wartosc_wierszy_ctrl());
+        $this->assertEquals(700, $walidator->wartosc_wierszy_netto());
+        $this->assertEquals(700, $walidator->wartosc_wierszy_ctrl());
     }
 
     /**
