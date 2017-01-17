@@ -65,7 +65,7 @@ class Faktura
 
     public function dataWykonania()
     {
-        return $this->DataWykonania ?: $this->DataWystawienia; //@todo czy napewno?
+        return $this->DataWykonania ?: false;
     }
 
     public function dataWystawienia()

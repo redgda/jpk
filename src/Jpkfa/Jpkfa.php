@@ -39,14 +39,14 @@ class Jpkfa
     {
         $this->dane['Faktury'][] = self::mapuj_fakture($faktura);
         $this->dane['FakturaCtrl']['LiczbaFaktur']++;
-        $this->dane['FakturaCtrl']['WartoscFaktur'] += $faktura->suma('brutto');
+        $this->dane['FakturaCtrl']['WartoscFaktur'] += $faktura->suma('netto');
 
         foreach ($faktura->wiersze as $wiersz)
         {
             $faktura_numer = $faktura->numer();
             $this->dane['Wiersze'][] = self::mapuj_wiersz($wiersz, $faktura_numer);
             $this->dane['FakturaWierszCtrl']['LiczbaWierszyFaktur']++;
-            $this->dane['FakturaWierszCtrl']['WartoscWierszyFaktur'] += $wiersz->sumaBrutto();
+            $this->dane['FakturaWierszCtrl']['WartoscWierszyFaktur'] += $wiersz->sumaNetto();
         }
     }
 
@@ -73,11 +73,12 @@ class Jpkfa
 
         $dane['P_5A'] = $faktura->prefixVatNabywca();
         $dane['P_5B'] = $faktura->nipNabywca();
-
-        $dane['P_6'] = $faktura->dataWykonania();
-
+        $dane['P_6'] = $faktura->dataWykonania(); // opcjonalne
         $dane['P_13_1'] = $faktura->suma('netto', 23);
         $dane['P_14_1'] = $faktura->suma('podatek', 23);
+
+        // pyt.43
+        // http://www.mf.gov.pl/documents/764034/5134536/Odpowiedzi+na+pytania+dot.+JPK.pdf
         $dane['P_15'] = $faktura->suma('brutto');
 
         $dane['RodzajFaktury'] = $faktura->rodzaj();
@@ -104,9 +105,9 @@ class Jpkfa
         $dane['P_8A'] = $wiersz->miara();
         $dane['P_8B'] = $wiersz->ilosc();
         $dane['P_9A'] = $wiersz->cenaJednostkowaNetto();
-        $dane['P_9B'] = $wiersz->cenaJednostkowaBrutto();
         $dane['P_11'] = $wiersz->sumaNetto();
-        $dane['P_11A'] = $wiersz->sumaBrutto();
+        $dane['P_9B'] = false; // ceny jedn. brutto nie wspierane
+        $dane['P_11A'] = false; // ceny jedn. brutto nie wspierane
         $dane['P_12'] = $wiersz->stawkaVatOpis();
         return $dane;
     }

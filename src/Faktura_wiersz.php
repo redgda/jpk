@@ -33,11 +33,6 @@ class Faktura_wiersz
         return $this->cenaJednostkowaNetto;
     }
 
-    public function cenaJednostkowaBrutto()
-    {
-        return round($this->sumaBrutto() / $this->ilosc, 2);
-    }
-
     public function sumaNetto()
     {
         return $this->cenaJednostkowaNetto * $this->ilosc;
@@ -60,7 +55,14 @@ class Faktura_wiersz
 
     public function stawkaVatOpis()
     {
-        // todo ustalic
-        return $this->stawkaVat;
+        if ($this->stawkaVatOpis)
+        {
+            // mozliwosc ustawienia 'zw'
+            return $this->stawkaVatOpis;
+        }
+        else
+        {
+            return $this->stawkaVat;
+        }
     }
 }

@@ -41,7 +41,7 @@
             <P_3C>{$faktura.P_3C}</P_3C>
             <P_3D>{$faktura.P_3D}</P_3D>
             <P_4B>{$faktura.P_4B}</P_4B>
-            <P_6>{$faktura.P_6}</P_6>
+            {if $faktura.P_6}<P_6>{$faktura.P_6}</P_6>{/if}
             <P_13_1>{$faktura.P_13_1}</P_13_1>
             <P_14_1>{$faktura.P_14_1}</P_14_1>
             <P_15>{$faktura.P_15}</P_15>
@@ -78,9 +78,9 @@
             <P_8A>{$wiersz.P_8A}</P_8A>
             <P_8B>{$wiersz.P_8B}</P_8B>
             <P_9A>{$wiersz.P_9A}</P_9A>
-            <P_9B>{$wiersz.P_9B}</P_9B>
+            {if $wiersz.P_9B}<P_9B>{$wiersz.P_9B}</P_9B>{/if}
             <P_11>{$wiersz.P_11}</P_11>
-            <P_11A>{$wiersz.P_11A}</P_11A>
+            {if $wiersz.P_11A}<P_11A>{$wiersz.P_11A}</P_11A>{/if}
             <P_12>{$wiersz.P_12}</P_12>
       </FakturaWiersz>
       {/foreach}

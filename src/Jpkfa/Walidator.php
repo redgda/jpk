@@ -62,14 +62,27 @@ class Walidator
         return $suma_brutto;
     }
 
+    public function wartosc_faktur_netto()
+    {
+        // @todo narazie tylko podstawowa stawka, powinny byc tez pozostale
+        $faktury_brutto = $this->dx->query('//p:Faktura/p:P_13_1');
+        $suma_brutto = 0;
+        foreach ($faktury_brutto as $brutto)
+        {
+            $suma_brutto += $brutto->nodeValue;
+        }
+
+        return $suma_brutto;
+    }
+
     public function wartosc_wierszy_ctrl()
     {
         return $this->dx->query('//p:FakturaWierszCtrl/p:WartoscWierszyFaktur')->item(0)->nodeValue;
     }
 
-    public function wartosc_wierszy()
+    public function wartosc_wierszy_netto()
     {
-        $wiersze_brutto = $this->dx->query('//p:FakturaWiersz/p:P_11A');
+        $wiersze_brutto = $this->dx->query('//p:FakturaWiersz/p:P_11');
         $suma_brutto = 0;
         foreach ($wiersze_brutto as $brutto)
         {
