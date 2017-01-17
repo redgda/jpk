@@ -20,7 +20,7 @@ class Faktura
 
     protected function zeruj_sumy()
     {
-        foreach (array_merge($this->stawki, ['total']) as $indeks)
+        foreach (array_merge($this->stawki, ['total', 'zw']) as $indeks)
         {
             $this->sumy['netto'][$indeks] = 0;
             $this->sumy['brutto'][$indeks] = 0;
@@ -38,8 +38,7 @@ class Faktura
             $suma_wiersza_podatek = $wiersz->sumaPodatek();
             $suma_wiersza_brutto = $wiersz->sumaBrutto();
 
-            // @todo problem ze stawkami zw. i 0
-            $indeks = $wiersz->stawkaVat();
+            $indeks = $wiersz->stawkaVatOpis();
 
             $this->sumy['netto'][$indeks] += $suma_wiersza_netto;
             $this->sumy['podatek'][$indeks] += $suma_wiersza_podatek;

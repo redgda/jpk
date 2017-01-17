@@ -74,8 +74,18 @@ class Jpkfa
         $dane['P_5A'] = $faktura->prefixVatNabywca();
         $dane['P_5B'] = $faktura->nipNabywca();
         $dane['P_6'] = $faktura->dataWykonania(); // opcjonalne
+
         $dane['P_13_1'] = $faktura->suma('netto', 23);
         $dane['P_14_1'] = $faktura->suma('podatek', 23);
+        $dane['P_13_2'] = $faktura->suma('netto', 8);
+        $dane['P_14_2'] = $faktura->suma('podatek', 8);
+        $dane['P_13_3'] = $faktura->suma('netto', 5);
+        $dane['P_14_3'] = $faktura->suma('podatek', 5);
+        $dane['P_13_4'] = null; //pole rezerwowe
+        $dane['P_13_5'] = null; //pole rezerwowe
+        $dane['P_13_5'] = null; //pole rezerwowe
+        $dane['P_13_6'] = $faktura->suma('netto', 0);
+        $dane['P_13_7'] = $faktura->suma('netto', 'zw');
 
         // pyt.43
         // http://www.mf.gov.pl/documents/764034/5134536/Odpowiedzi+na+pytania+dot.+JPK.pdf

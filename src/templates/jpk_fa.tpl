@@ -42,8 +42,14 @@
             <P_3D>{$faktura.P_3D}</P_3D>
             <P_4B>{$faktura.P_4B}</P_4B>
             {if $faktura.P_6}<P_6>{$faktura.P_6}</P_6>{/if}
-            <P_13_1>{$faktura.P_13_1}</P_13_1>
-            <P_14_1>{$faktura.P_14_1}</P_14_1>
+            {if $faktura.P_13_1}<P_13_1>{$faktura.P_13_1}</P_13_1>{/if}
+            {if $faktura.P_13_2}<P_13_2>{$faktura.P_13_2}</P_13_2>{/if}
+            {if $faktura.P_13_3}<P_13_3>{$faktura.P_13_3}</P_13_3>{/if}
+            {if $faktura.P_13_4}<P_13_4>{$faktura.P_13_4}</P_13_4>{/if}
+            {if $faktura.P_13_5}<P_13_5>{$faktura.P_13_5}</P_13_5>{/if}
+            {if $faktura.P_13_6}<P_13_6>{$faktura.P_13_6}</P_13_6>{/if}
+            {if $faktura.P_13_7}<P_13_7>{$faktura.P_13_7}</P_13_7>{/if}
+            {if $faktura.P_14_1}<P_14_1>{$faktura.P_14_1}</P_14_1>{/if}
             <P_15>{$faktura.P_15}</P_15>
             <P_16>{$faktura.P_16}</P_16>
             <P_17>{$faktura.P_17}</P_17>

@@ -64,15 +64,23 @@ class Walidator
 
     public function wartosc_faktur_netto()
     {
-        // @todo narazie tylko podstawowa stawka, powinny byc tez pozostale
-        $faktury_brutto = $this->dx->query('//p:Faktura/p:P_13_1');
-        $suma_brutto = 0;
-        foreach ($faktury_brutto as $brutto)
+        // kwoty netto sa w roznych polach dla roznych stawek
+        $lista_kwot_netto = $this->dx->query(
+            '//p:Faktura/p:P_13_1
+            | //p:Faktura/p:P_13_2
+            | //p:Faktura/p:P_13_3
+            | //p:Faktura/p:P_13_4
+            | //p:Faktura/p:P_13_5
+            | //p:Faktura/p:P_13_6
+            | //p:Faktura/p:P_13_7
+        ');
+        $suma = 0;
+        foreach ($lista_kwot_netto as $kwota)
         {
-            $suma_brutto += $brutto->nodeValue;
+            $suma += $kwota->nodeValue;
         }
 
-        return $suma_brutto;
+        return $suma;
     }
 
     public function wartosc_wierszy_ctrl()

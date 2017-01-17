@@ -11,7 +11,7 @@ class Faktura_wiersz
     public $stawkaVat = 23;
 
     // zwolnione i 0 maja wartosc stawki 0 ale opis bedzie inny "zw" lub 0
-    public $stawkaVatOpis = 23;
+    public $stawkaVatOpis;
 
     public function nazwa()
     {
