@@ -11,7 +11,7 @@ class Jpk_Test extends PHPUnit_Framework_TestCase
         $sprzedawca->Ulica = 'Wały Piastowskie';
         $sprzedawca->NrDomu = '1';
         $sprzedawca->KodPocztowy = '80-855';
-        $sprzedawca->Kod_kraju = 'PL';
+        $sprzedawca->KodKraju = 'PL';
         $sprzedawca->Wojewodztwo = 'POMORSKIE';
         $sprzedawca->Powiat = 'Gdańsk';
         $sprzedawca->Miejscowosc = 'Gdańsk';

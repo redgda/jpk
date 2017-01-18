@@ -14,21 +14,21 @@
 
       <Podmiot1>
          <IdentyfikatorPodmiotu>
-            <etd:NIP>{$Podmiot1->Nip}</etd:NIP>
-            <etd:PelnaNazwa>{$Podmiot1->Nazwa}</etd:PelnaNazwa>
-            <etd:REGON>{$Podmiot1->Regon}</etd:REGON>
+            <etd:NIP>{$Podmiot1.NIP}</etd:NIP>
+            <etd:PelnaNazwa>{$Podmiot1.PelnaNazwa}</etd:PelnaNazwa>
+            {if $Podmiot1.Regon}<etd:REGON>{$Podmiot1.Regon}</etd:REGON>{/if}
          </IdentyfikatorPodmiotu>
          <AdresPodmiotu>
-            <etd:KodKraju>{$Podmiot1->Kod_kraju}</etd:KodKraju>
-            <etd:Wojewodztwo>{$Podmiot1->Wojewodztwo}</etd:Wojewodztwo>
-            <etd:Powiat>{$Podmiot1->Powiat}</etd:Powiat>
-            <etd:Gmina>{$Podmiot1->Gmina}</etd:Gmina>
-            <etd:Ulica>{$Podmiot1->Ulica}</etd:Ulica>
-            <etd:NrDomu>{$Podmiot1->NrDomu}</etd:NrDomu>
-            {if $Podmiot1->NrLokalu}<etd:NrLokalu>{$Podmiot1->NrLokalu}</etd:NrLokalu>{/if}
-            <etd:Miejscowosc>{$Podmiot1->Miejscowosc}</etd:Miejscowosc>
-            <etd:KodPocztowy>{$Podmiot1->KodPocztowy}</etd:KodPocztowy>
-            <etd:Poczta>{$Podmiot1->Poczta}</etd:Poczta>
+            <etd:KodKraju>{$Podmiot1.KodKraju}</etd:KodKraju>
+            <etd:Wojewodztwo>{$Podmiot1.Wojewodztwo}</etd:Wojewodztwo>
+            <etd:Powiat>{$Podmiot1.Powiat}</etd:Powiat>
+            <etd:Gmina>{$Podmiot1.Gmina}</etd:Gmina>
+            <etd:Ulica>{$Podmiot1.Ulica}</etd:Ulica>
+            <etd:NrDomu>{$Podmiot1.NrDomu}</etd:NrDomu>
+            {if $Podmiot1.NrLokalu}<etd:NrLokalu>{$Podmiot1.NrLokalu}</etd:NrLokalu>{/if}
+            <etd:Miejscowosc>{$Podmiot1.Miejscowosc}</etd:Miejscowosc>
+            <etd:KodPocztowy>{$Podmiot1.KodPocztowy}</etd:KodPocztowy>
+            <etd:Poczta>{$Podmiot1.Poczta}</etd:Poczta>
          </AdresPodmiotu>
       </Podmiot1>
 

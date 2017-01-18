@@ -7,7 +7,6 @@ class Jpkfa
 
     public function __construct($podmiot1, $data_od, $data_do, $kod_urzedu, $cel_zlozenia=1)
     {
-        $this->dane['Podmiot1'] = $podmiot1;
         $this->dane['DataOd'] = $data_od;
         $this->dane['DataDo'] = $data_do;
         $this->dane['KodUrzedu'] = $kod_urzedu;
@@ -15,6 +14,8 @@ class Jpkfa
 
         $this->dane['DomyslnyKodWaluty'] = 'PLN';
         $this->dane['DataWytworzeniaJPK'] = date("Y-m-d\TH:i:s");
+
+        $this->dane['Podmiot1'] = self::mapuj_podmiot($podmiot1);
 
         $this->dane['FakturaCtrl']['LiczbaFaktur'] = 0;
         $this->dane['FakturaCtrl']['WartoscFaktur'] = 0;
@@ -108,7 +109,7 @@ class Jpkfa
 
     protected function mapuj_wiersz(Faktura_wiersz $wiersz, $numer_faktury)
     {
-        $dane['Typ'] = 'G'; // jedyna dozwolona wartosc
+        $dane['Typ'] = 'G'; // stala wartosc
 
         $dane['P2_b'] = $numer_faktury;
         $dane['P_7'] = $wiersz->nazwa();
@@ -119,6 +120,28 @@ class Jpkfa
         $dane['P_9B'] = false; // ceny jedn. brutto nie wspierane
         $dane['P_11A'] = false; // ceny jedn. brutto nie wspierane
         $dane['P_12'] = $wiersz->stawkaVatOpis();
+
+        return $dane;
+    }
+
+    protected function mapuj_podmiot(Podmiot $podmiot)
+    {
+        $dane['KodKraju'] = 'PL'; // stala wartosc
+
+        $dane['NIP'] = $podmiot->nip();
+        $dane['PelnaNazwa'] = $podmiot->pelnaNazwa();
+        $dane['Regon'] = $podmiot->regon();
+        $dane['Wojewodztwo'] = $podmiot->wojewodztwo();
+        $dane['Powiat'] = $podmiot->powiat();
+        $dane['Gmina'] = $podmiot->gmina();
+        $dane['Poczta'] = $podmiot->poczta();
+        $dane['Ulica'] = $podmiot->ulica();
+        $dane['NrDomu'] = $podmiot->nrDomu();
+        $dane['NrLokalu'] = $podmiot->nrLokalu();
+        $dane['Miejscowosc'] = $podmiot->miejscowosc();
+        $dane['KodPocztowy'] = $podmiot->kodPocztowy();
+        $dane['Poczta'] = $podmiot->poczta();
+
         return $dane;
     }
 }

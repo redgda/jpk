@@ -28,4 +28,64 @@ class Podmiot
 
         return trim($adres);
     }
+
+    public function nip()
+    {
+        return $this->Nip;
+    }
+
+    public function pelnaNazwa()
+    {
+        return $this->Nazwa;
+    }
+
+    public function regon()
+    {
+        return $this->Regon;
+    }
+
+    public function wojewodztwo()
+    {
+        return $this->Wojewodztwo;
+    }
+
+    public function powiat()
+    {
+        return $this->Powiat;
+    }
+
+    public function gmina()
+    {
+        return $this->Gmina;
+    }
+
+    public function poczta()
+    {
+        return $this->Poczta;
+    }
+
+    public function ulica()
+    {
+        return $this->Ulica;
+    }
+
+    public function nrDomu()
+    {
+        return $this->NrDomu;
+    }
+
+    public function nrLokalu()
+    {
+        return $this->NrLokalu;
+    }
+
+    public function miejscowosc()
+    {
+        return $this->Miejscowosc;
+    }
+
+    public function kodPocztowy()
+    {
+        return $this->KodPocztowy;
+    }
 }
