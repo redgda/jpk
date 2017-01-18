@@ -7,6 +7,9 @@ class Jpkfa
 
     public function __construct($podmiot1, $data_od, $data_do, $kod_urzedu, $cel_zlozenia=1)
     {
+        $this->dane['xmlns'] = 'http://jpk.mf.gov.pl/wzor/2016/03/09/03095/';
+        $this->dane['xmlns_etd'] = 'http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2016/01/25/eD/DefinicjeTypy/';
+
         $naglowek['KodFormularza'] = 'JPK_FA';
         $naglowek['kodSystemowy'] = 'JPK_FA (1)';
         $naglowek['wersjaSchemy'] = '1-0';

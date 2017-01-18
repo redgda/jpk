@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<JPK xmlns="http://jpk.mf.gov.pl/wzor/2016/03/09/03095/" xmlns:etd="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2016/01/25/eD/DefinicjeTypy/">
+<JPK xmlns="{$dane.xmlns}" xmlns:etd="{$dane.xmlns_etd}">
 
       <Naglowek>
             <KodFormularza kodSystemowy="{$Naglowek.kodSystemowy}" wersjaSchemy="{$Naglowek.wersjaSchemy}">{$Naglowek.KodFormularza}</KodFormularza>
