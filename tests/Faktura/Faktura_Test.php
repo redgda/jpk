@@ -82,14 +82,18 @@ class Faktura_Test extends Jpk_Test
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = '0.13';
         $wiersz1->ilosc = 10;
-        $faktura->dodaj_wiersz($wiersz1);
 
+        $faktura->dodaj_wiersz($wiersz1);
         $this->assertEquals('1.6', $faktura->suma('brutto'));
 
+        $faktura->usun_wiersze();
         $wiersz1->ilosc = 100;
+        $faktura->dodaj_wiersz($wiersz1);
         $this->assertEquals('15.99', $faktura->suma('brutto'));
 
+        $faktura->usun_wiersze();
         $wiersz1->ilosc = 1000;
+        $faktura->dodaj_wiersz($wiersz1);
         $this->assertEquals('159.9', $faktura->suma('brutto'));
     }
 }

@@ -61,6 +61,9 @@
             <P_106E_2>{$faktura.P_106E_2}</P_106E_2>
             <P_106E_3>{$faktura.P_106E_3}</P_106E_3>
             <RodzajFaktury>{$faktura.RodzajFaktury}</RodzajFaktury>
+            {if $faktura.PrzyczynaKorekty}<PrzyczynaKorekty>{$faktura.PrzyczynaKorekty}</PrzyczynaKorekty>{/if}
+            {if $faktura.NrFaKorygowanej}<NrFaKorygowanej>{$faktura.NrFaKorygowanej}</NrFaKorygowanej>{/if}
+            {if $faktura.OkresFaKorygowanej}<OkresFaKorygowanej>{$faktura.OkresFaKorygowanej}</OkresFaKorygowanej>{/if}
       </Faktura>
       {/foreach}
 

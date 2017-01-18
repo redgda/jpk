@@ -100,6 +100,10 @@ class Jpkfa
         $dane['P_15'] = $faktura->suma('brutto');
 
         $dane['RodzajFaktury'] = $faktura->rodzaj();
+        $dane['PrzyczynaKorekty'] = $faktura->przyczynaKorekty();
+        $dane['NrFaKorygowanej'] = $faktura->numerFakturyKorygowanej();
+        // wymagane przez xsd, czy to jest data faktury korygowanej?
+        $dane['OkresFaKorygowanej'] = $faktura->okresFakturyKorygowanej();
 
         $dane['P_16'] = false;
         $dane['P_17'] = false;

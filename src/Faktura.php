@@ -8,6 +8,10 @@ class Faktura
     public $DataWykonania;
     public $Numer;
 
+    public $PrzyczynaKorekty = '';
+    public $NumerFakturyKorygowanej = '';
+    public $OkresFakturyKorygowanej = '';
+
     protected $sumy;
     protected $stawki = array(0, 5, 8, 23);
 
@@ -51,6 +55,18 @@ class Faktura
     }
 
     public function dodaj_wiersz(Faktura_Wiersz $wiersz)
+    {
+        $this->wiersze[] = clone $wiersz;
+        $this->przelicz();
+    }
+
+    public function usun_wiersze()
+    {
+        $this->wiersze = [];
+        $this->przelicz();
+    }
+
+    public function koryguj_wiersz(Faktura_Wiersz $wiersz)
     {
         $this->wiersze[] = $wiersz;
         $this->przelicz();
@@ -119,11 +135,31 @@ class Faktura
 
     public function rodzaj()
     {
+        if ($this->NumerFakturyKorygowanej)
+        {
+            return 'KOREKTA';
+        }
+
         return 'VAT';
     }
 
     public function wiersze()
     {
         return $this->wiersze;
+    }
+
+    public function przyczynaKorekty()
+    {
+        return $this->PrzyczynaKorekty;
+    }
+
+    public function numerFakturyKorygowanej()
+    {
+        return $this->NumerFakturyKorygowanej;
+    }
+
+    public function okresFakturyKorygowanej()
+    {
+        return $this->OkresFakturyKorygowanej;
     }
 }
