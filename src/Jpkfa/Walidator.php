@@ -121,4 +121,19 @@ class Walidator
 
         return true;
     }
+
+    public function sprawdz_numery()
+    {
+        $numery = [];
+        $numery_dom = $this->dx->query('//p:Faktura/p:P_2A');
+        foreach ($numery_dom as $numer)
+        {
+            if (in_array($numer, $numery))
+            {
+                return false;
+            }
+            $numery[] = $numer;
+        }
+        return true;
+    }
 }

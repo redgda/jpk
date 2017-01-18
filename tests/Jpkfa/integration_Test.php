@@ -93,4 +93,13 @@ class integration_Test extends Jpk_Test
         $this->assertTrue($walidator->sprawdz_daty());
     }
 
+    /**
+     * @depends test_generuj
+     */
+    function test_numery($raport_path)
+    {
+        $walidator = new \Jpk\Walidator($raport_path);
+        $this->assertTrue($walidator->sprawdz_numery());
+    }
+
 }
