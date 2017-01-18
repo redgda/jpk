@@ -84,4 +84,13 @@ class integration_Test extends Jpk_Test
         $this->assertEquals(2, $walidator->liczba_wierszy_ctrl());
     }
 
+    /**
+     * @depends test_generuj
+     */
+    function test_daty($raport_path)
+    {
+        $walidator = new \Jpk\Walidator($raport_path);
+        $this->assertTrue($walidator->sprawdz_daty());
+    }
+
 }

@@ -99,4 +99,26 @@ class Walidator
 
         return $suma_brutto;
     }
+
+    // format dat sprawdza xsd
+    public function sprawdz_daty()
+    {
+        $od = $this->dx->query('//p:Naglowek/p:DataOd')->item(0)->nodeValue;
+        $do = $this->dx->query('//p:Naglowek/p:DataDo')->item(0)->nodeValue;
+        if ($do < $od)
+        {
+            return false;
+        }
+
+        $daty = $this->dx->query('//p:Faktura/p:P_1');
+        foreach ($daty as $data)
+        {
+            if ($data->nodeValue > $do or $data->nodeValue < $od)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
