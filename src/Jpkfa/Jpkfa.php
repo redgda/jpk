@@ -7,13 +7,17 @@ class Jpkfa
 
     public function __construct($podmiot1, $data_od, $data_do, $kod_urzedu, $cel_zlozenia=1)
     {
-        $this->dane['DataOd'] = $data_od;
-        $this->dane['DataDo'] = $data_do;
-        $this->dane['KodUrzedu'] = $kod_urzedu;
-        $this->dane['CelZlozenia'] = $cel_zlozenia;
-
-        $this->dane['DomyslnyKodWaluty'] = 'PLN';
-        $this->dane['DataWytworzeniaJPK'] = date("Y-m-d\TH:i:s");
+        $naglowek['KodFormularza'] = 'JPK_FA';
+        $naglowek['kodSystemowy'] = 'JPK_FA (1)';
+        $naglowek['wersjaSchemy'] = '1-0';
+        $naglowek['WariantFormularza'] = '1';
+        $naglowek['CelZlozenia'] = $cel_zlozenia;
+        $naglowek['DataOd'] = $data_od;
+        $naglowek['DataDo'] = $data_do;
+        $naglowek['DomyslnyKodWaluty'] = 'PLN';
+        $naglowek['DataWytworzeniaJPK'] = date("Y-m-d\TH:i:s");
+        $naglowek['KodUrzedu'] = $kod_urzedu;
+        $this->dane['Naglowek'] = $naglowek;
 
         $this->dane['Podmiot1'] = self::mapuj_podmiot($podmiot1);
 

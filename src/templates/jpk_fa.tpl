@@ -2,14 +2,14 @@
 <JPK xmlns="http://jpk.mf.gov.pl/wzor/2016/03/09/03095/" xmlns:etd="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2016/01/25/eD/DefinicjeTypy/">
 
       <Naglowek>
-            <KodFormularza kodSystemowy="JPK_FA (1)" wersjaSchemy="1-0">JPK_FA</KodFormularza>
-            <WariantFormularza>1</WariantFormularza>
-            <CelZlozenia>{$dane.CelZlozenia}</CelZlozenia>
-            <DataWytworzeniaJPK>{$dane.DataWytworzeniaJPK}</DataWytworzeniaJPK>
-            <DataOd>{$dane.DataOd}</DataOd>
-            <DataDo>{$dane.DataDo}</DataDo>
-            <DomyslnyKodWaluty>{$dane.DomyslnyKodWaluty}</DomyslnyKodWaluty>
-            <KodUrzedu>{$dane.KodUrzedu}</KodUrzedu>
+            <KodFormularza kodSystemowy="{$Naglowek.kodSystemowy}" wersjaSchemy="{$Naglowek.wersjaSchemy}">{$Naglowek.KodFormularza}</KodFormularza>
+            <WariantFormularza>{$Naglowek.WariantFormularza}</WariantFormularza>
+            <CelZlozenia>{$Naglowek.CelZlozenia}</CelZlozenia>
+            <DataWytworzeniaJPK>{$Naglowek.DataWytworzeniaJPK}</DataWytworzeniaJPK>
+            <DataOd>{$Naglowek.DataOd}</DataOd>
+            <DataDo>{$Naglowek.DataDo}</DataDo>
+            <DomyslnyKodWaluty>{$Naglowek.DomyslnyKodWaluty}</DomyslnyKodWaluty>
+            <KodUrzedu>{$Naglowek.KodUrzedu}</KodUrzedu>
       </Naglowek>
 
       <Podmiot1>
