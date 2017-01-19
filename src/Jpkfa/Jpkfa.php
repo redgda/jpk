@@ -105,15 +105,15 @@ class Jpkfa
         // wymagane przez xsd, czy to jest data faktury korygowanej?
         $dane['OkresFaKorygowanej'] = $faktura->okresFakturyKorygowanej();
 
-        $dane['P_16'] = false;
-        $dane['P_17'] = false;
-        $dane['P_18'] = false;
-        $dane['P_19'] = false;
-        $dane['P_20'] = false;
-        $dane['P_21'] = false;
-        $dane['P_23'] = false;
-        $dane['P_106E_2'] = false;
-        $dane['P_106E_3'] = false;
+        $dane['P_16'] = 'false'; //metoda kasowa
+        $dane['P_17'] = 'false'; // samofakturowanie
+        $dane['P_18'] = 'false'; // odwrotne obciazenie
+        $dane['P_19'] = 'false'; // zwolnione z podatku
+        $dane['P_20'] = 'false';
+        $dane['P_21'] = 'false';
+        $dane['P_23'] = 'false';
+        $dane['P_106E_2'] = 'false';
+        $dane['P_106E_3'] = 'false';
 
         return $dane;
     }
