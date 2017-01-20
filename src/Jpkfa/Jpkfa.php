@@ -118,7 +118,7 @@ class Jpkfa
         return $dane;
     }
 
-    protected function mapuj_wiersz(Faktura_wiersz $wiersz, $numer_faktury)
+    protected function mapuj_wiersz(FakturaWiersz $wiersz, $numer_faktury)
     {
         $dane['Typ'] = 'G'; // stala wartosc
 

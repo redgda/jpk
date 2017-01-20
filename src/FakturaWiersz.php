@@ -2,7 +2,7 @@
 
 namespace Jpk;
 
-class Faktura_wiersz
+class FakturaWiersz
 {
     public $nazwa;
     public $cenaJednostkowaNetto;

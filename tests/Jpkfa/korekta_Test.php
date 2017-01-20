@@ -14,7 +14,7 @@ class korekta_Test extends Jpk_Test
         $faktura->OkresFakturyKorygowanej = '2016-01-01';
 
         // przed korekta
-        $wiersz1 = new \Jpk\Faktura_wiersz();
+        $wiersz1 = new \Jpk\FakturaWiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = 100;
         $wiersz1->ilosc = 1;

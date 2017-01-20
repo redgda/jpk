@@ -6,11 +6,11 @@ class Faktura_Test extends Jpk_Test
     {
         $faktura = $this->stworz_fakture();
 
-        $wiersz1 = new \Jpk\Faktura_wiersz(); $wiersz1->nazwa = 'towar1';
+        $wiersz1 = new \Jpk\FakturaWiersz(); $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = '100';
         $faktura->dodaj_wiersz($wiersz1);
 
-        $wiersz2 = new \Jpk\Faktura_wiersz();
+        $wiersz2 = new \Jpk\FakturaWiersz();
         $wiersz2->nazwa = 'towar2';
         $wiersz2->cenaJednostkowaNetto = '22.8';
         $wiersz2->ilosc = 3;
@@ -32,7 +32,7 @@ class Faktura_Test extends Jpk_Test
     {
         $faktura = $this->stworz_fakture();
 
-        $wiersz1 = new \Jpk\Faktura_wiersz();
+        $wiersz1 = new \Jpk\FakturaWiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = '100';
         $wiersz1->stawkaVat = 0;
@@ -48,21 +48,21 @@ class Faktura_Test extends Jpk_Test
         $testowana_stawka = 5;
         $faktura = $this->stworz_fakture();
 
-        $wiersz1 = new \Jpk\Faktura_wiersz();
+        $wiersz1 = new \Jpk\FakturaWiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = '100';
         $wiersz1->stawkaVat = $testowana_stawka;
         $wiersz1->ilosc = 5;
         $faktura->dodaj_wiersz($wiersz1);
 
-        $wiersz2 = new \Jpk\Faktura_wiersz();
+        $wiersz2 = new \Jpk\FakturaWiersz();
         $wiersz2->nazwa = 'towar2';
         $wiersz2->cenaJednostkowaNetto = '200';
         $wiersz2->stawkaVat = $testowana_stawka;
         $wiersz2->ilosc = 2;
         $faktura->dodaj_wiersz($wiersz2);
 
-        $wiersz2 = new \Jpk\Faktura_wiersz();
+        $wiersz2 = new \Jpk\FakturaWiersz();
         $wiersz2->nazwa = 'towar2';
         $wiersz2->cenaJednostkowaNetto = '1000';
         $wiersz2->stawkaVat = 23;
@@ -78,7 +78,7 @@ class Faktura_Test extends Jpk_Test
     function test_zaokraglen_brutto()
     {
         $faktura = $this->stworz_fakture();
-        $wiersz1 = new \Jpk\Faktura_wiersz();
+        $wiersz1 = new \Jpk\FakturaWiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = '0.13';
         $wiersz1->ilosc = 10;

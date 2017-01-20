@@ -54,7 +54,7 @@ class Faktura
         }
     }
 
-    public function dodaj_wiersz(Faktura_Wiersz $wiersz)
+    public function dodaj_wiersz(FakturaWiersz $wiersz)
     {
         $this->wiersze[] = clone $wiersz;
         $this->przelicz();
@@ -66,7 +66,7 @@ class Faktura
         $this->przelicz();
     }
 
-    public function koryguj_wiersz(Faktura_Wiersz $wiersz)
+    public function koryguj_wiersz(FakturaWiersz $wiersz)
     {
         $this->wiersze[] = $wiersz;
         $this->przelicz();
