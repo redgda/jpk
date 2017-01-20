@@ -7,22 +7,22 @@ class korekta_Test extends Jpk_Test
         $raport_path = "raport3.xml";
 
         $faktura = $this->stworz_fakture();
-        $faktura->DataWystawienia = '2017-01-01';
-        $faktura->Numer = '1/17/FKS';
-        $faktura->NumerFakturyKorygowanej = '01/01/2016 FVS';
-        $faktura->PrzyczynaKorekty = 'Rezygnacja';
-        $faktura->OkresFakturyKorygowanej = '2016-01-01';
+        $faktura->dataWystawienia = '2017-01-01';
+        $faktura->numer = '1/17/FKS';
+        $faktura->numerFakturyKorygowanej = '01/01/2016 FVS';
+        $faktura->przyczynaKorekty = 'Rezygnacja';
+        $faktura->okresFakturyKorygowanej = '2016-01-01';
 
         // przed korekta
         $wiersz1 = new \Jpk\FakturaWiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = 100;
         $wiersz1->ilosc = 1;
-        $faktura->dodaj_wiersz($wiersz1);
+        $faktura->dodajWiersz($wiersz1);
 
         // korekta
         $wiersz1->ilosc = -1;
-        $faktura->dodaj_wiersz($wiersz1);
+        $faktura->dodajWiersz($wiersz1);
 
         $jpkfa = new \Jpk\Jpkfa($faktura->sprzedawca, "2017-01-01", "2017-01-31", 2206);
         $jpkfa->dodaj_fakture($faktura);

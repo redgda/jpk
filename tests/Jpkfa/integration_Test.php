@@ -7,20 +7,20 @@ class integration_Test extends Jpk_Test
         $raport_path = "raport.xml";
 
         $faktura = $this->stworz_fakture();
-        $faktura->DataWystawienia = '2017-01-01';
-        $faktura->Numer = '123/01/2017 FVS';
+        $faktura->dataWystawienia = '2017-01-01';
+        $faktura->numer = '123/01/2017 FVS';
 
         $wiersz1 = new \Jpk\FakturaWiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = 100;
         $wiersz1->ilosc = 1;
-        $faktura->dodaj_wiersz($wiersz1);
+        $faktura->dodajWiersz($wiersz1);
 
         $wiersz2 = new \Jpk\FakturaWiersz();
         $wiersz2->nazwa = 'towar 2';
         $wiersz2->cenaJednostkowaNetto = 200;
         $wiersz2->ilosc = 3;
-        $faktura->dodaj_wiersz($wiersz2);
+        $faktura->dodajWiersz($wiersz2);
 
         $jpkfa = new \Jpk\Jpkfa($faktura->sprzedawca, "2017-01-01", "2017-01-31", 2206);
         $jpkfa->dodaj_fakture($faktura);

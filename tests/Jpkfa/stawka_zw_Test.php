@@ -7,8 +7,8 @@ class stawka_zw_Test extends Jpk_Test
         $raport_path = "raport2.xml";
 
         $faktura = $this->stworz_fakture();
-        $faktura->DataWystawienia = '2017-01-01';
-        $faktura->Numer = '1/01/2017 FVS';
+        $faktura->dataWystawienia = '2017-01-01';
+        $faktura->numer = '1/01/2017 FVS';
 
         $wiersz1 = new \Jpk\FakturaWiersz();
         $wiersz1->nazwa = 'towar1';
@@ -16,7 +16,7 @@ class stawka_zw_Test extends Jpk_Test
         $wiersz1->ilosc = 1;
         $wiersz1->stawkaVat = 0;
         $wiersz1->stawkaVatOpis = 'zw';
-        $faktura->dodaj_wiersz($wiersz1);
+        $faktura->dodajWiersz($wiersz1);
 
         $wiersz2 = new \Jpk\FakturaWiersz();
         $wiersz2->nazwa = 'towar1';
@@ -24,7 +24,7 @@ class stawka_zw_Test extends Jpk_Test
         $wiersz2->ilosc = 2;
         $wiersz2->stawkaVat = 0;
         $wiersz2->stawkaVatOpis = 'zw';
-        $faktura->dodaj_wiersz($wiersz2);
+        $faktura->dodajWiersz($wiersz2);
 
         $jpkfa = new \Jpk\Jpkfa($faktura->sprzedawca, "2017-01-01", "2017-01-31", 2206);
         $jpkfa->dodaj_fakture($faktura);
