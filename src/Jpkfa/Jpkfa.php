@@ -30,10 +30,10 @@ class Jpkfa
         $this->dane['FakturaWierszCtrl']['LiczbaWierszyFaktur'] = 0;
         $this->dane['FakturaWierszCtrl']['WartoscWierszyFaktur'] = 0;
 
-        $this->set_generator();
+        $this->setGenerator();
     }
 
-    public function set_generator($generator = null)
+    public function setGenerator(XMLGenerator $generator = null)
     {
         if (!$generator)
         {

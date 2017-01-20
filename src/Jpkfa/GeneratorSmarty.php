@@ -2,7 +2,7 @@
 
 namespace Jpk;
 
-class GeneratorSmarty
+class GeneratorSmarty implements XMLGenerator
 {
     public function __construct()
     {
