@@ -4,13 +4,12 @@ namespace Jpk;
 
 class Faktura
 {
-    public $DataWystawienia;
-    public $DataWykonania;
-    public $Numer;
-
-    public $PrzyczynaKorekty = '';
-    public $NumerFakturyKorygowanej = '';
-    public $OkresFakturyKorygowanej = '';
+    public $dataWystawienia;
+    public $dataWykonania;
+    public $numer;
+    public $przyczynaKorekty = '';
+    public $numerFakturyKorygowanej = '';
+    public $okresFakturyKorygowanej = '';
 
     protected $sumy;
     protected $stawki = array(0, 5, 8, 23);
@@ -19,10 +18,10 @@ class Faktura
     {
         $this->sprzedawca = $podmiot;
         $this->nabywca = $klient;
-        $this->zeruj_sumy();
+        $this->zerujSumy();
     }
 
-    protected function zeruj_sumy()
+    protected function zerujSumy()
     {
         foreach (array_merge($this->stawki, ['total', 'zw']) as $indeks)
         {
@@ -34,7 +33,7 @@ class Faktura
 
     public function przelicz()
     {
-        $this->zeruj_sumy();
+        $this->zerujSumy();
 
         foreach ($this->wiersze as $wiersz)
         {
@@ -54,19 +53,19 @@ class Faktura
         }
     }
 
-    public function dodaj_wiersz(FakturaWiersz $wiersz)
+    public function dodajWiersz(FakturaWiersz $wiersz)
     {
         $this->wiersze[] = clone $wiersz;
         $this->przelicz();
     }
 
-    public function usun_wiersze()
+    public function usunWiersze()
     {
         $this->wiersze = [];
         $this->przelicz();
     }
 
-    public function koryguj_wiersz(FakturaWiersz $wiersz)
+    public function korygujWiersz(FakturaWiersz $wiersz)
     {
         $this->wiersze[] = $wiersz;
         $this->przelicz();
@@ -80,17 +79,17 @@ class Faktura
 
     public function dataWykonania()
     {
-        return $this->DataWykonania ?: false;
+        return $this->dataWykonania ?: false;
     }
 
     public function dataWystawienia()
     {
-        return $this->DataWystawienia;
+        return $this->dataWystawienia;
     }
 
     public function numer()
     {
-        return $this->Numer;
+        return $this->numer;
     }
 
     public function nazwaNabywcy()
@@ -135,7 +134,7 @@ class Faktura
 
     public function rodzaj()
     {
-        if ($this->NumerFakturyKorygowanej)
+        if ($this->numerFakturyKorygowanej)
         {
             return 'KOREKTA';
         }
@@ -150,16 +149,16 @@ class Faktura
 
     public function przyczynaKorekty()
     {
-        return $this->PrzyczynaKorekty;
+        return $this->przyczynaKorekty;
     }
 
     public function numerFakturyKorygowanej()
     {
-        return $this->NumerFakturyKorygowanej;
+        return $this->numerFakturyKorygowanej;
     }
 
     public function okresFakturyKorygowanej()
     {
-        return $this->OkresFakturyKorygowanej;
+        return $this->okresFakturyKorygowanej;
     }
 }
