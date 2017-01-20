@@ -2,7 +2,7 @@
 
 namespace Jpk;
 
-class Generator_smarty
+class GeneratorSmarty
 {
     public function __construct()
     {
