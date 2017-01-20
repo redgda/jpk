@@ -95,7 +95,7 @@ class Faktura
 
     public function nazwaNabywcy()
     {
-        return $this->nabywca->Nazwa;
+        return $this->nabywca->pelnaNazwa();
     }
 
     public function adresNabywcy()
@@ -105,7 +105,7 @@ class Faktura
 
     public function nazwaSprzedawcy()
     {
-        return $this->sprzedawca->Nazwa;
+        return $this->sprzedawca->pelnaNazwa();
     }
 
     public function adresSprzedawcy()
@@ -115,22 +115,22 @@ class Faktura
 
     public function prefixVatSprzedawca()
     {
-        return $this->sprzedawca->prefixVat ?: 'PL';
+        return $this->sprzedawca->prefixVat() ?: 'PL';
     }
 
     public function prefixVatNabywca()
     {
-        return $this->nabywca->prefixVat ?: 'PL';
+        return $this->nabywca->prefixVat() ?: 'PL';
     }
 
     public function nipSprzedawca()
     {
-        return $this->sprzedawca->Nip;
+        return $this->sprzedawca->nip();
     }
 
     public function nipNabywca()
     {
-        return $this->nabywca->Nip;
+        return $this->nabywca->nip();
     }
 
     public function rodzaj()

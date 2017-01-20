@@ -4,26 +4,26 @@ namespace Jpk;
 
 class Podmiot
 {
-    public $Nazwa;
-    public $Nip;
-    public $Regon;
-    public $Ulica;
-    public $NrDomu;
-    public $NrLokalu;
-    public $Wojewodztwo;
-    public $Miejscowosc;
-    public $Gmina;
-    public $Poczta;
-    public $KodPocztowy;
+    public $nazwa;
+    public $nip;
+    public $regon;
+    public $ulica;
+    public $nrDomu;
+    public $nrLokalu;
+    public $wojewodztwo;
+    public $miejscowosc;
+    public $gmina;
+    public $poczta;
+    public $kodPocztowy;
     public $prefixVat;
 
     public function get_adres()
     {
-        $adres = "{$this->KodPocztowy} {$this->Miejscowosc}, ";
-        $adres .= "{$this->Ulica} {$this->NrDomu}";
-        if ($this->NrLokalu)
+        $adres = "{$this->kodPocztowy} {$this->miejscowosc}, ";
+        $adres .= "{$this->ulica} {$this->nrDomu}";
+        if ($this->nrLokalu)
         {
-            $adres .= "/{$this->NrLokalu}";
+            $adres .= "/{$this->nrLokalu}";
         }
 
         return trim($adres);
@@ -31,61 +31,66 @@ class Podmiot
 
     public function nip()
     {
-        return $this->Nip;
+        return $this->nip;
     }
 
     public function pelnaNazwa()
     {
-        return $this->Nazwa;
+        return $this->nazwa;
     }
 
     public function regon()
     {
-        return $this->Regon;
+        return $this->regon;
     }
 
     public function wojewodztwo()
     {
-        return $this->Wojewodztwo;
+        return $this->wojewodztwo;
     }
 
     public function powiat()
     {
-        return $this->Powiat;
+        return $this->powiat;
     }
 
     public function gmina()
     {
-        return $this->Gmina;
+        return $this->gmina;
     }
 
     public function poczta()
     {
-        return $this->Poczta;
+        return $this->poczta;
     }
 
     public function ulica()
     {
-        return $this->Ulica;
+        return $this->ulica;
     }
 
     public function nrDomu()
     {
-        return $this->NrDomu;
+        return $this->nrDomu;
     }
 
     public function nrLokalu()
     {
-        return $this->NrLokalu;
+        return $this->nrLokalu;
     }
 
     public function miejscowosc()
     {
-        return $this->Miejscowosc;
+        return $this->miejscowosc;
     }
 
     public function kodPocztowy()
     {
-        return $this->KodPocztowy;
+        return $this->kodPocztowy;
+    }
+
+    public function prefixVat()
+    {
+        return $this->prefixVat;
     }
 }
