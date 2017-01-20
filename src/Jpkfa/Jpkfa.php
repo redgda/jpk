@@ -22,7 +22,7 @@ class Jpkfa
         $naglowek['KodUrzedu'] = $kod_urzedu;
         $this->dane['Naglowek'] = $naglowek;
 
-        $this->dane['Podmiot1'] = self::mapuj_podmiot($podmiot1);
+        $this->dane['Podmiot1'] = self::mapujPodmiot($podmiot1);
 
         $this->dane['FakturaCtrl']['LiczbaFaktur'] = 0;
         $this->dane['FakturaCtrl']['WartoscFaktur'] = 0;
@@ -43,16 +43,16 @@ class Jpkfa
         $this->generator = $generator;
     }
 
-    public function dodaj_fakture(Faktura $faktura)
+    public function dodajFakture(Faktura $faktura)
     {
-        $this->dane['Faktury'][] = self::mapuj_fakture($faktura);
+        $this->dane['Faktury'][] = self::mapujFakture($faktura);
         $this->dane['FakturaCtrl']['LiczbaFaktur']++;
         $this->dane['FakturaCtrl']['WartoscFaktur'] += $faktura->suma('netto');
 
         foreach ($faktura->wiersze as $wiersz)
         {
             $faktura_numer = $faktura->numer();
-            $this->dane['Wiersze'][] = self::mapuj_wiersz($wiersz, $faktura_numer);
+            $this->dane['Wiersze'][] = self::mapujWiersz($wiersz, $faktura_numer);
             $this->dane['FakturaWierszCtrl']['LiczbaWierszyFaktur']++;
             $this->dane['FakturaWierszCtrl']['WartoscWierszyFaktur'] += $wiersz->sumaNetto();
         }
@@ -63,7 +63,7 @@ class Jpkfa
         file_put_contents($path, $this->generator->xml($this->dane));
     }
 
-    protected function mapuj_fakture($faktura)
+    protected function mapujFakture($faktura)
     {
         $dane['Typ'] = 'G'; // jedyna dozwolona wartosc
 
@@ -118,7 +118,7 @@ class Jpkfa
         return $dane;
     }
 
-    protected function mapuj_wiersz(FakturaWiersz $wiersz, $numer_faktury)
+    protected function mapujWiersz(FakturaWiersz $wiersz, $numer_faktury)
     {
         $dane['Typ'] = 'G'; // stala wartosc
 
@@ -135,7 +135,7 @@ class Jpkfa
         return $dane;
     }
 
-    protected function mapuj_podmiot(Podmiot $podmiot)
+    protected function mapujPodmiot(Podmiot $podmiot)
     {
         $dane['KodKraju'] = 'PL'; // stala wartosc
 

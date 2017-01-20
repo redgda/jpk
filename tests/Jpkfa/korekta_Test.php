@@ -25,7 +25,7 @@ class korekta_Test extends Jpk_Test
         $faktura->dodajWiersz($wiersz1);
 
         $jpkfa = new \Jpk\Jpkfa($faktura->sprzedawca, "2017-01-01", "2017-01-31", 2206);
-        $jpkfa->dodaj_fakture($faktura);
+        $jpkfa->dodajFakture($faktura);
         $jpkfa->generuj($raport_path);
         $this->assertFileExists($raport_path);
 
