@@ -2,12 +2,12 @@
 
 namespace Jpk;
 
-class Generator_smarty
+class GeneratorSmarty implements XMLGenerator
 {
     public function __construct()
     {
         $this->tpl = new \Smarty;
-        $this->tpl->setTemplateDir(__DIR__ . '/../templates/');
+        $this->tpl->setTemplateDir(__DIR__ . '/../../templates/');
     }
 
     public function xml($dane)
@@ -22,6 +22,6 @@ class Generator_smarty
         $this->tpl->assign('Wiersze', $dane['Wiersze']);
         $this->tpl->assign('FakturaWierszCtrl', $dane['FakturaWierszCtrl']);
 
-        return $this->tpl->fetch('jpk_fa.tpl');
+        return $this->tpl->fetch('jpkfa.tpl');
     }
 }

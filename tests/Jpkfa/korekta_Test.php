@@ -7,25 +7,25 @@ class korekta_Test extends Jpk_Test
         $raport_path = "raport3.xml";
 
         $faktura = $this->stworz_fakture();
-        $faktura->DataWystawienia = '2017-01-01';
-        $faktura->Numer = '1/17/FKS';
-        $faktura->NumerFakturyKorygowanej = '01/01/2016 FVS';
-        $faktura->PrzyczynaKorekty = 'Rezygnacja';
-        $faktura->OkresFakturyKorygowanej = '2016-01-01';
+        $faktura->dataWystawienia = '2017-01-01';
+        $faktura->numer = '1/17/FKS';
+        $faktura->numerFakturyKorygowanej = '01/01/2016 FVS';
+        $faktura->przyczynaKorekty = 'Rezygnacja';
+        $faktura->okresFakturyKorygowanej = '2016-01-01';
 
         // przed korekta
-        $wiersz1 = new \Jpk\Faktura_wiersz();
+        $wiersz1 = new \Jpk\FakturaWiersz();
         $wiersz1->nazwa = 'towar1';
         $wiersz1->cenaJednostkowaNetto = 100;
         $wiersz1->ilosc = 1;
-        $faktura->dodaj_wiersz($wiersz1);
+        $faktura->dodajWiersz($wiersz1);
 
         // korekta
         $wiersz1->ilosc = -1;
-        $faktura->dodaj_wiersz($wiersz1);
+        $faktura->dodajWiersz($wiersz1);
 
         $jpkfa = new \Jpk\Jpkfa($faktura->sprzedawca, "2017-01-01", "2017-01-31", 2206);
-        $jpkfa->dodaj_fakture($faktura);
+        $jpkfa->dodajFakture($faktura);
         $jpkfa->generuj($raport_path);
         $this->assertFileExists($raport_path);
 
@@ -39,7 +39,7 @@ class korekta_Test extends Jpk_Test
     {
         $walidator = new \Jpk\Walidator($raport_path);
         $this->assertTrue(
-            $walidator->sprawdz_zgodnosc_struktury(__DIR__ .'/../../spec/schemat_jpk_fa.xsd'), 
+            $walidator->sprawdzZgodnoscStruktury(),
             'niezgodny z formalna struktura xsd'
         );
     }
@@ -50,9 +50,9 @@ class korekta_Test extends Jpk_Test
     function test_wartosc_faktur($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(0, $walidator->wartosc_faktur()); // P_15
-        $this->assertEquals(0, $walidator->wartosc_faktur_ctrl()); // faktury ctrl
-        $this->assertEquals(0, $walidator->wartosc_faktur_netto()); // P_13_1
+        $this->assertEquals(0, $walidator->wartoscFaktur()); // P_15
+        $this->assertEquals(0, $walidator->wartoscFakturCtrl()); // faktury ctrl
+        $this->assertEquals(0, $walidator->wartoscFakturNetto()); // P_13_1
     }
 
     /**
@@ -61,8 +61,8 @@ class korekta_Test extends Jpk_Test
     function test_wartosc_wierszy($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(0, $walidator->wartosc_wierszy_netto());
-        $this->assertEquals(0, $walidator->wartosc_wierszy_ctrl());
+        $this->assertEquals(0, $walidator->wartoscWierszyNetto());
+        $this->assertEquals(0, $walidator->wartoscWierszyCtrl());
     }
 
     /**
