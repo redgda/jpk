@@ -4,53 +4,49 @@ namespace Jpk;
 
 class Walidator
 {
+    protected $xsd = '/../../spec/schemat_jpk_fa.xsd';
+
     public function __construct($plik)
     {
         $this->plik = $plik;
-        $this->file_contents = file_get_contents($this->plik);
-
         $this->dom = new \DOMDocument();
-        $this->dom->loadXML($this->file_contents);
+        $this->dom->loadXML(file_get_contents($this->plik));
         $this->dx = new \DOMXPath($this->dom);
         $this->dx->registerNamespace("p", 'http://jpk.mf.gov.pl/wzor/2016/03/09/03095/');
     }
 
-    public function sprawdz_poprawnosc()
+    public function sprawdzZgodnoscStruktury($schema = null)
     {
-        return $this->sprawdz_zgodnosc_struktury();
+        $schema = $schema ?: __DIR__ . $this->xsd;
+        return $this->dom->schemaValidate($schema);
     }
 
-    public function sprawdz_zgodnosc_struktury($schema_file)
-    {
-        return $this->dom->schemaValidate($schema_file);
-    }
-
-    public function liczba_faktur_ctrl()
+    public function liczbaFakturCtrl()
     {
         return $this->dx->query('//p:FakturaCtrl/p:LiczbaFaktur')->item(0)->nodeValue;
     }
 
-    public function liczba_faktur()
+    public function liczbaFaktur()
     {
         return $this->dx->query('//p:Faktura')->length;
     }
 
-    public function liczba_wierszy_ctrl()
+    public function liczbaWierszyCtrl()
     {
         return $this->dx->query('//p:FakturaWierszCtrl/p:LiczbaWierszyFaktur')->item(0)->nodeValue;
     }
 
-    public function liczba_wierszy()
+    public function liczbaWierszy()
     {
         return $this->dx->query('//p:FakturaWiersz')->length;
     }
 
-    public function wartosc_faktur_ctrl()
+    public function wartoscFakturCtrl()
     {
         return $this->dx->query('//p:FakturaCtrl/p:WartoscFaktur')->item(0)->nodeValue;
     }
 
-    public function wartosc_faktur()
+    public function wartoscFaktur()
     {
         $faktury_brutto = $this->dx->query('//p:Faktura/p:P_15');
         $suma_brutto = 0;
@@ -62,7 +58,7 @@ class Walidator
         return $suma_brutto;
     }
 
-    public function wartosc_faktur_netto()
+    public function wartoscFakturNetto()
     {
         // kwoty netto sa w roznych polach dla roznych stawek
         $lista_kwot_netto = $this->dx->query(
@@ -83,12 +79,12 @@ class Walidator
         return $suma;
     }
 
-    public function wartosc_wierszy_ctrl()
+    public function wartoscWierszyCtrl()
     {
         return $this->dx->query('//p:FakturaWierszCtrl/p:WartoscWierszyFaktur')->item(0)->nodeValue;
     }
 
-    public function wartosc_wierszy_netto()
+    public function wartoscWierszyNetto()
     {
         $wiersze_brutto = $this->dx->query('//p:FakturaWiersz/p:P_11');
         $suma_brutto = 0;
@@ -101,7 +97,7 @@ class Walidator
     }
 
     // format dat sprawdza xsd
-    public function sprawdz_daty()
+    public function sprawdzDaty()
     {
         $od = $this->dx->query('//p:Naglowek/p:DataOd')->item(0)->nodeValue;
         $do = $this->dx->query('//p:Naglowek/p:DataDo')->item(0)->nodeValue;
@@ -122,7 +118,7 @@ class Walidator
         return true;
     }
 
-    public function sprawdz_numery()
+    public function sprawdzNumery()
     {
         $numery = [];
         $numery_dom = $this->dx->query('//p:Faktura/p:P_2A');

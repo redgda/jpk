@@ -38,7 +38,7 @@ class integration_Test extends Jpk_Test
     {
         $walidator = new \Jpk\Walidator($raport_path);
         $this->assertTrue(
-            $walidator->sprawdz_zgodnosc_struktury(__DIR__ .'/../../spec/schemat_jpk_fa.xsd'), 
+            $walidator->sprawdzZgodnoscStruktury(),
             'niezgodny z formalna struktura xsd'
         );
     }
@@ -49,8 +49,8 @@ class integration_Test extends Jpk_Test
     function test_liczba_faktur($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(1, $walidator->liczba_faktur());
-        $this->assertEquals(1, $walidator->liczba_faktur_ctrl());
+        $this->assertEquals(1, $walidator->liczbaFaktur());
+        $this->assertEquals(1, $walidator->liczbaFakturCtrl());
     }
 
     /**
@@ -59,9 +59,9 @@ class integration_Test extends Jpk_Test
     function test_wartosc_faktur($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(861, $walidator->wartosc_faktur()); // P_15
-        $this->assertEquals(700, $walidator->wartosc_faktur_ctrl()); // 
-        $this->assertEquals(700, $walidator->wartosc_faktur_netto()); // P_15
+        $this->assertEquals(861, $walidator->wartoscFaktur()); // P_15
+        $this->assertEquals(700, $walidator->wartoscFakturCtrl()); // 
+        $this->assertEquals(700, $walidator->wartoscFakturNetto()); // P_15
     }
 
     /**
@@ -70,8 +70,8 @@ class integration_Test extends Jpk_Test
     function test_wartosc_wierszy($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(700, $walidator->wartosc_wierszy_netto());
-        $this->assertEquals(700, $walidator->wartosc_wierszy_ctrl());
+        $this->assertEquals(700, $walidator->wartoscWierszyNetto());
+        $this->assertEquals(700, $walidator->wartoscWierszyCtrl());
     }
 
     /**
@@ -80,8 +80,8 @@ class integration_Test extends Jpk_Test
     function test_ilosc_wierszy($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(2, $walidator->liczba_wierszy());
-        $this->assertEquals(2, $walidator->liczba_wierszy_ctrl());
+        $this->assertEquals(2, $walidator->liczbaWierszy());
+        $this->assertEquals(2, $walidator->liczbaWierszyCtrl());
     }
 
     /**
@@ -90,7 +90,7 @@ class integration_Test extends Jpk_Test
     function test_daty($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertTrue($walidator->sprawdz_daty());
+        $this->assertTrue($walidator->sprawdzDaty());
     }
 
     /**
@@ -99,7 +99,7 @@ class integration_Test extends Jpk_Test
     function test_numery($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertTrue($walidator->sprawdz_numery());
+        $this->assertTrue($walidator->sprawdzNumery());
     }
 
 }

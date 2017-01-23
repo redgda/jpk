@@ -42,7 +42,7 @@ class stawka_zw_Test extends Jpk_Test
     {
         $walidator = new \Jpk\Walidator($raport_path);
         $this->assertTrue(
-            $walidator->sprawdz_zgodnosc_struktury(__DIR__ .'/../../spec/schemat_jpk_fa.xsd'), 
+            $walidator->sprawdzZgodnoscStruktury(),
             'niezgodny z formalna struktura xsd'
         );
     }
@@ -53,9 +53,9 @@ class stawka_zw_Test extends Jpk_Test
     function test_wartosc_faktur($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(500, $walidator->wartosc_faktur()); // P_15
-        $this->assertEquals(500, $walidator->wartosc_faktur_ctrl()); // faktury ctrl
-        $this->assertEquals(500, $walidator->wartosc_faktur_netto()); // P_13_1
+        $this->assertEquals(500, $walidator->wartoscFaktur()); // P_15
+        $this->assertEquals(500, $walidator->wartoscFakturCtrl()); // faktury ctrl
+        $this->assertEquals(500, $walidator->wartoscFakturNetto()); // P_13_1
     }
 
     /**
@@ -64,7 +64,7 @@ class stawka_zw_Test extends Jpk_Test
     function test_wartosc_wierszy($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertEquals(500, $walidator->wartosc_wierszy_netto());
-        $this->assertEquals(500, $walidator->wartosc_wierszy_ctrl());
+        $this->assertEquals(500, $walidator->wartoscWierszyNetto());
+        $this->assertEquals(500, $walidator->wartoscWierszyCtrl());
     }
 }
