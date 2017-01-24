@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <JPK xmlns="{$dane.xmlns}" xmlns:etd="{$dane.xmlns_etd}">
 
+      {assign var='Naglowek' value=$dane.Naglowek}
       <Naglowek>
             <KodFormularza kodSystemowy="{$Naglowek.kodSystemowy}" wersjaSchemy="{$Naglowek.wersjaSchemy}">{$Naglowek.KodFormularza}</KodFormularza>
             <WariantFormularza>{$Naglowek.WariantFormularza}</WariantFormularza>
@@ -12,6 +13,7 @@
             <KodUrzedu>{$Naglowek.KodUrzedu}</KodUrzedu>
       </Naglowek>
 
+      {assign var='Podmiot1' value=$dane.Podmiot1}
       <Podmiot1>
          <IdentyfikatorPodmiotu>
             <etd:NIP>{$Podmiot1.NIP}</etd:NIP>
@@ -32,6 +34,7 @@
          </AdresPodmiotu>
       </Podmiot1>
 
+      {assign var='Faktury' value=$dane.Faktury}
       {foreach from=$Faktury item=faktura}
       <Faktura typ="{$faktura.Typ}">
             <P_1>{$faktura.P_1}</P_1>
@@ -67,6 +70,7 @@
       </Faktura>
       {/foreach}
 
+      {assign var='FakturaCtrl' value=$dane.FakturaCtrl}
       <FakturaCtrl>
             <LiczbaFaktur>{$FakturaCtrl.LiczbaFaktur}</LiczbaFaktur>
             <WartoscFaktur>{$FakturaCtrl.WartoscFaktur}</WartoscFaktur>
@@ -80,6 +84,7 @@
             <Stawka5>0.00</Stawka5>
       </StawkiPodatku>
 
+      {assign var='Wiersze' value=$dane.Wiersze}
       {foreach from=$Wiersze item=wiersz}
       <FakturaWiersz typ="{$wiersz.Typ}">
             <P_2B>{$wiersz.P2_b|escape:html}</P_2B>
@@ -94,6 +99,7 @@
       </FakturaWiersz>
       {/foreach}
 
+      {assign var='FakturaWierszCtrl' value=$dane.FakturaWierszCtrl}
       <FakturaWierszCtrl>
             <LiczbaWierszyFaktur>{$FakturaWierszCtrl.LiczbaWierszyFaktur}</LiczbaWierszyFaktur>
             <WartoscWierszyFaktur>{$FakturaWierszCtrl.WartoscWierszyFaktur}</WartoscWierszyFaktur>
