@@ -4,9 +4,11 @@ namespace Jpk;
 
 class GeneratorSmarty implements XMLGenerator
 {
-    public function __construct($smarty=null)
+    public $tpl;
+
+    public function __construct(\Smarty $smarty=null)
     {
-        $this->tpl = new \Smarty;
+        $this->tpl = $smarty;
         $this->tpl->setTemplateDir(__DIR__ . '/../../templates/');
     }
 

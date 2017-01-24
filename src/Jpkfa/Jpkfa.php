@@ -37,7 +37,8 @@ class Jpkfa
     {
         if (!$generator)
         {
-            $generator = new \Jpk\GeneratorSmarty;
+            $smarty = new \Smarty;
+            $generator = new \Jpk\GeneratorSmarty($smarty);
         }
 
         $this->generator = $generator;
