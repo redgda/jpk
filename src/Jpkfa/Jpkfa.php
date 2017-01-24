@@ -4,6 +4,10 @@ namespace Jpk;
 
 class Jpkfa
 {
+    /**
+     * przewidziane i obslugiwane bledy
+     */
+    protected $bledy = [];
 
     public function __construct($podmiot1, $data_od, $data_do, $kod_urzedu, $cel_zlozenia=1)
     {
@@ -67,6 +71,8 @@ class Jpkfa
         if (count($this->dane['Faktury']) == 0)
         {
             // w aktualnym schemacie nie mozna wygenerowac raportu bez elementu Faktura
+            $this->bledy[] = 'nie mozna wygenerowac raportu bez faktur';
+
             return false;
         }
 
@@ -164,5 +170,10 @@ class Jpkfa
         $dane['Poczta'] = $podmiot->poczta();
 
         return $dane;
+    }
+
+    public function ostatniBlad()
+    {
+        return end($this->bledy);
     }
 }
