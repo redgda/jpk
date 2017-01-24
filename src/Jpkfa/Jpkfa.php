@@ -24,6 +24,9 @@ class Jpkfa
 
         $this->dane['Podmiot1'] = self::mapujPodmiot($podmiot1);
 
+        $this->dane['Faktury'] = [];
+        $this->dane['Wiersze'] = [];
+
         $this->dane['FakturaCtrl']['LiczbaFaktur'] = 0;
         $this->dane['FakturaCtrl']['WartoscFaktur'] = 0;
 
@@ -61,7 +64,13 @@ class Jpkfa
 
     public function generuj($path)
     {
-        file_put_contents($path, $this->generator->xml($this->dane));
+        if (count($this->dane['Faktury']) == 0)
+        {
+            // w aktualnym schemacie nie mozna wygenerowac raportu bez elementu Faktura
+            return false;
+        }
+
+        return file_put_contents($path, $this->generator->xml($this->dane));
     }
 
     protected function mapujFakture($faktura)
