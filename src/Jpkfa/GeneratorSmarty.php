@@ -15,6 +15,19 @@ class GeneratorSmarty implements XMLGenerator
     public function xml($dane)
     {
         $this->tpl->assign('dane', $dane);
-        return $this->tpl->fetch('jpkfa.tpl');
+        $xml = $this->tpl->fetch('jpkfa.tpl');
+
+        // generowanie przez smarty jest wygodne ale ma duzo problemow z formatowaniem
+        // np znaki nowej lini i wciecia w ifach dlatego robimy reformat
+        return $this->reformat($xml);
+    }
+
+    public function reformat($xml)
+    {
+        $dom = new \DOMDocument();
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $dom->loadXML($xml);
+        return $dom->saveXML();
     }
 }
