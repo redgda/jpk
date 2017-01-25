@@ -43,10 +43,10 @@
             <P_3B>{$faktura.P_3B|escape:html}</P_3B>
             <P_3C>{$faktura.P_3C|escape:html}</P_3C>
             <P_3D>{$faktura.P_3D|escape:html}</P_3D>
-            <P_4A>{$faktura.P_4A|escape:html}</P_4A>
-            <P_4B>{$faktura.P_4B|escape:html}</P_4B>
-            <P_5A>{$faktura.P_5A|escape:html}</P_5A>
-            <P_5B>{$faktura.P_5B|escape:html}</P_5B>
+            {if $faktura.P_4A}<P_4A>{$faktura.P_4A|escape:html}</P_4A>{/if}
+            {if $faktura.P_4B}<P_4B>{$faktura.P_4B|escape:html}</P_4B>{/if}
+            {if $faktura.P_5A}<P_5A>{$faktura.P_5A|escape:html}</P_5A>{/if}
+            {if $faktura.P_5B}<P_5B>{$faktura.P_5B|escape:html}</P_5B>{/if}
             {if $faktura.P_6}<P_6>{$faktura.P_6}</P_6>{/if}
             {if $faktura.P_13_1}<P_13_1>{$faktura.P_13_1}</P_13_1>{/if}
             {if $faktura.P_13_2}<P_13_2>{$faktura.P_13_2}</P_13_2>{/if}
