@@ -40,4 +40,13 @@ class Jpk_Test extends PHPUnit_Framework_TestCase
         return $faktura;
     }
 
+    public function assertXSDValid($raport_path)
+    {
+        $walidator = new \Jpk\Walidator($raport_path);
+        $this->assertTrue(
+            $walidator->sprawdzZgodnoscStruktury(),
+            'niezgodny z formalna struktura xsd'
+        );
+    }
+
 }

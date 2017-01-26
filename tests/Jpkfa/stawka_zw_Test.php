@@ -40,11 +40,7 @@ class stawka_zw_Test extends Jpk_Test
      */
     function test_struktury($raport_path)
     {
-        $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertTrue(
-            $walidator->sprawdzZgodnoscStruktury(),
-            'niezgodny z formalna struktura xsd'
-        );
+        $this->assertXSDValid($raport_path);
     }
 
     /**
