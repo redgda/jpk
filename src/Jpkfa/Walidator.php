@@ -118,18 +118,61 @@ class Walidator
         return true;
     }
 
-    public function sprawdzNumery()
+    protected function numeryFaktur()
     {
-        $numery = [];
-        $numery_dom = $this->dx->query('//p:Faktura/p:P_2A');
-        foreach ($numery_dom as $numer)
+        $list = $this->dx->query('//p:Faktura/p:P_2A');
+        foreach ($list as $i)
         {
-            if (in_array($numer, $numery))
+            $ret[] = $i->nodeValue;
+        }
+        return (array)$ret;
+    }
+
+    protected function numeryWierszy()
+    {
+        $list = $this->dx->query('//p:FakturaWiersz/p:P_2B');
+        foreach ($list as $i)
+        {
+            $ret[] = $i->nodeValue;
+        }
+        return (array)$ret;
+    }
+
+    public function unikalnoscNumerowFaktur()
+    {
+        $numery = $this->numeryFaktur();
+        return count($numery) == count(array_unique($numery));
+    }
+
+    public function kazdyNumerFakturyMaWiersz()
+    {
+        $numery_faktur = $this->numeryFaktur();
+        $numery_wierszy = $this->numeryWierszy();
+
+        foreach ($numery_faktur as $numer)
+        {
+            if (!in_array($numer, $numery_wierszy))
             {
                 return false;
             }
-            $numery[] = $numer;
         }
+
+        return true;
+    }
+
+    public function kazdyNumerWierszaMaFakture()
+    {
+        $numery_faktur = $this->numeryFaktur();
+        $numery_wierszy = $this->numeryWierszy();
+
+        foreach ($numery_wierszy as $numer)
+        {
+            if (!in_array($numer, $numery_faktur))
+            {
+                return false;
+            }
+        }
+
         return true;
     }
 }

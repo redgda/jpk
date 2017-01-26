@@ -99,7 +99,9 @@ class integration_Test extends Jpk_Test
     function test_numery($raport_path)
     {
         $walidator = new \Jpk\Walidator($raport_path);
-        $this->assertTrue($walidator->sprawdzNumery());
+        $this->assertTrue($walidator->unikalnoscNumerowFaktur());
+        $this->assertTrue($walidator->kazdyNumerFakturyMaWiersz());
+        $this->assertTrue($walidator->kazdyNumerWierszaMaFakture());
     }
 
 }
