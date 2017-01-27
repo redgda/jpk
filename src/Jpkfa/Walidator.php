@@ -5,6 +5,7 @@ namespace Jpk;
 class Walidator
 {
     protected $xsd = '/../../spec/schemat_jpk_fa.xsd';
+    protected $bledy = [];
 
     public function __construct($plik)
     {
@@ -17,8 +18,16 @@ class Walidator
 
     public function sprawdzZgodnoscStruktury($schema = null)
     {
+        libxml_use_internal_errors(true);
         $schema = $schema ?: __DIR__ . $this->xsd;
-        return $this->dom->schemaValidate($schema);
+        $ret = $this->dom->schemaValidate($schema);
+        $errors = (array)libxml_get_errors();
+        foreach ($errors as $e)
+        {
+            $this->bledy[] = $e->message;
+        }
+        libxml_use_internal_errors(false);
+        return $ret;
     }
 
     public function liczbaFakturCtrl()
@@ -174,5 +183,10 @@ class Walidator
         }
 
         return true;
+    }
+
+    public function bledy()
+    {
+        return $this->bledy;
     }
 }
