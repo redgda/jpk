@@ -26,8 +26,21 @@ class Walidator
         {
             $this->bledy[] = $e->message;
         }
+        libxml_clear_errors();
         libxml_use_internal_errors(false);
+
         return $ret;
+    }
+
+    /**
+     * dodatkowa weryfikacja wygenerowanego raportu
+     */
+    public function sprawdzPoprawnoscDanych()
+    {
+        $this->sprawdzDaty();
+        $this->unikalnoscNumerowFaktur();
+        $this->kazdyNumerFakturyMaWiersz();
+        $this->kazdyNumerWierszaMaFakture();
     }
 
     public function liczbaFakturCtrl()
@@ -108,11 +121,13 @@ class Walidator
     // format dat sprawdza xsd
     public function sprawdzDaty()
     {
+        $ret = true;
         $od = $this->dx->query('//p:Naglowek/p:DataOd')->item(0)->nodeValue;
         $do = $this->dx->query('//p:Naglowek/p:DataDo')->item(0)->nodeValue;
         if ($do < $od)
         {
-            return false;
+            $this->bledy[] = "niepoprawny zakres dat (od:$od, do:$do)";
+            $ret = false;
         }
 
         $daty = $this->dx->query('//p:Faktura/p:P_1');
@@ -120,11 +135,20 @@ class Walidator
         {
             if ($data->nodeValue > $do or $data->nodeValue < $od)
             {
-                return false;
+                $this->bledy[] = "data dokumentu poza zdefiniowanym zakresem ($od, $do)";
+                $ret = false;
             }
+
+            if ($ostatnia_data && $ostatnia_data>$data->nodeValue)
+            {
+                $this->bledy[] = "dokumenty nie sa posortowane chronologicznie ($data->nodeValue)";
+                $ret = false;
+            }
+
+            $ostatnia_data = $data->nodeValue;
         }
 
-        return true;
+        return $ret;
     }
 
     protected function numeryFaktur()
@@ -149,12 +173,24 @@ class Walidator
 
     public function unikalnoscNumerowFaktur()
     {
+        $ret = true;
         $numery = $this->numeryFaktur();
-        return count($numery) == count(array_unique($numery));
+        $wystapienia = array_count_values($numery);
+        foreach ($wystapienia as $numer=>$licznik)
+        {
+            if ($licznik > 1)
+            {
+                $this->bledy[] = "numer $numer wystepuje wiecej niz raz ($licznik)";
+                $ret = false;
+            }
+        }
+
+        return $ret;
     }
 
     public function kazdyNumerFakturyMaWiersz()
     {
+        $ret = true;
         $numery_faktur = $this->numeryFaktur();
         $numery_wierszy = $this->numeryWierszy();
 
@@ -162,15 +198,17 @@ class Walidator
         {
             if (!in_array($numer, $numery_wierszy))
             {
-                return false;
+                $this->bledy[] = "faktura $numer nie ma odpowiednika w wierszach";
+                $ret = false;
             }
         }
 
-        return true;
+        return $ret;
     }
 
     public function kazdyNumerWierszaMaFakture()
     {
+        $ret = true;
         $numery_faktur = $this->numeryFaktur();
         $numery_wierszy = $this->numeryWierszy();
 
@@ -178,11 +216,12 @@ class Walidator
         {
             if (!in_array($numer, $numery_faktur))
             {
-                return false;
+                $this->bledy[] = "faktura $numer nie ma odpowiednika w wierszach";
+                $ret = false;
             }
         }
 
-        return true;
+        return $ret;
     }
 
     public function bledy()
